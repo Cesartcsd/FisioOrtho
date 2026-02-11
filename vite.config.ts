@@ -12,10 +12,13 @@ export default defineConfig(({ mode }) => {
   const windowsChromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
   const platformDefaultExecutablePath = process.platform === 'win32' ? windowsChromePath : undefined;
   const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || platformDefaultExecutablePath;
+  const isVercelBuild = process.env.VERCEL === '1';
+  const runPrerenderOnVercel = process.env.PRERENDER_ON_VERCEL === 'true';
+  const shouldRunPrerender = mode === 'production' && (!isVercelBuild || runPrerenderOnVercel);
 
   const plugins = [react()];
 
-  if (mode === 'production') {
+  if (shouldRunPrerender) {
     plugins.push(
       vitePrerender({
         staticDir: path.join(__dirname, 'dist'),
