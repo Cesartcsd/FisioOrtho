@@ -9,6 +9,9 @@ const vitePrerender = require('vite-plugin-prerender');
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
+  const windowsChromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+  const platformDefaultExecutablePath = process.platform === 'win32' ? windowsChromePath : undefined;
+  const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || platformDefaultExecutablePath;
 
   const plugins = [react()];
 
@@ -21,7 +24,7 @@ export default defineConfig(({ mode }) => {
           renderAfterTime: 1200,
           maxConcurrentRoutes: 1,
           headless: true,
-          executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+          ...(executablePath ? { executablePath } : {}),
           args: ['--no-sandbox', '--disable-setuid-sandbox'],
         }),
       }),
