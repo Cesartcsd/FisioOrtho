@@ -1,503 +1,302 @@
-# 📖 Documentação do Projeto - Soroportas
+# Documentacao do Projeto - Soroportas
 
-> **Última atualização:** 20 de Janeiro de 2026
-
----
-
-## 📋 Sumário
-
-- [Visão Geral](#-visão-geral)
-- [Stack Tecnológica](#️-stack-tecnológica)
-- [Estrutura de Arquivos](#-estrutura-de-arquivos)
-- [Componentes](#-componentes)
-- [Design System](#-design-system)
-- [Conteúdo e Constantes](#-conteúdo-e-constantes)
-- [Como Executar](#-como-executar)
-- [Arquitetura e Fluxo](#-arquitetura-e-fluxo)
-- [Integrações](#-integrações)
-- [Considerações Técnicas](#-considerações-técnicas)
+> Ultima atualizacao: 10/02/2026
 
 ---
 
-## 🎯 Visão Geral
+## 1) Visao Geral
 
-### O que é o projeto?
+O **Soroportas** e um site institucional em React para captacao de leads via WhatsApp e apresentacao de produtos premium.
 
-O **Soroportas** é um **site institucional/landing page** desenvolvido para uma empresa especializada em **portas de alto padrão**. O objetivo principal do site é:
+Estado atual do projeto:
 
-- Apresentar os produtos e coleções de portas
-- Destacar os diferenciais e qualidade da marca
-- Capturar leads e converter visitantes em contatos via **WhatsApp**
-
-### Público-Alvo
-
-- Arquitetos e designers de interiores
-- Construtoras e incorporadoras
-- Proprietários de imóveis de alto padrão
-- Pessoas buscando portas premium para reforma ou construção
-
-### Proposta de Valor
-
-*"A porta certa muda o ambiente inteiro."*
-
-Portas de alto padrão com acabamento preciso e atendimento que ajuda o cliente a escolher sem erro.
+- Arquitetura multipagina.
+- Rotas publicas com pre-render estatico.
+- SEO tecnico por rota (meta tags, canonical, OG, Twitter e JSON-LD).
+- Midias locais em `public/assets` com `srcset` WebP.
+- Paginas dedicadas por colecao com filtro por cor (fase pre-upload de fotos).
 
 ---
 
-## 🛠️ Stack Tecnológica
+## 2) Stack Tecnologica
 
-### Dependências Principais
-
-| Tecnologia | Versão | Finalidade |
-|------------|--------|------------|
-| **React** | ^19.2.3 | Biblioteca de UI para construção de interfaces |
-| **React DOM** | ^19.2.3 | Renderização do React no browser |
-| **TypeScript** | ~5.8.2 | Tipagem estática para JavaScript |
-| **Vite** | ^6.2.0 | Build tool e servidor de desenvolvimento |
-| **Framer Motion** | 11.16.0 | Biblioteca de animações declarativas |
-| **Lucide React** | ^0.562.0 | Biblioteca de ícones SVG |
-
-### DevDependencies
-
-| Tecnologia | Versão | Finalidade |
-|------------|--------|------------|
-| **@vitejs/plugin-react** | ^5.0.0 | Plugin do Vite para suporte ao React |
-| **@types/node** | ^22.14.0 | Types do Node.js para TypeScript |
-
-### CDN/Externos
-
-| Recurso | URL | Finalidade |
-|---------|-----|------------|
-| **TailwindCSS** | cdn.tailwindcss.com | Framework CSS utilitário |
-| **Google Fonts** | fonts.googleapis.com | Fontes Playfair Display e Inter |
-| **ESM.sh** | esm.sh | CDN para módulos ES (React, Framer Motion, Lucide) |
+| Tecnologia | Versao | Funcao |
+|---|---:|---|
+| React | ^19.2.3 | UI |
+| React DOM | ^19.2.3 | Render no browser |
+| TypeScript | ~5.8.2 | Tipagem estatica |
+| Vite | ^6.2.0 | Dev server e build |
+| React Router DOM | ^7.13.0 | Roteamento multipagina |
+| React Helmet Async | ^2.0.5 | SEO tags por rota |
+| Framer Motion | 11.16.0 | Animacoes |
+| Lucide React | ^0.562.0 | Icones |
+| Tailwind CSS | ^3.4.1 | Estilizacao |
+| PostCSS + Autoprefixer | ^8.4.31 / ^10.4.16 | Pipeline CSS |
+| vite-plugin-prerender | ^1.0.8 | Pre-render em producao |
+| sharp | ^0.34.5 | Apoio para otimizacao de imagens |
 
 ---
 
-## 📁 Estrutura de Arquivos
+## 3) Estrutura de Arquivos (Atual)
 
-```
-soroportas---portas-de-alto-padrão/
-│
-├── 📄 index.html              # HTML principal - ponto de entrada
-├── 📄 index.tsx               # Entry point do React
-├── 📄 App.tsx                 # Componente raiz da aplicação
-├── 📄 constants.ts            # Constantes de conteúdo (textos, URLs, dados)
-├── 📄 types.ts                # Interfaces TypeScript
-├── 📄 vite.config.ts          # Configuração do Vite
-├── 📄 tsconfig.json           # Configuração do TypeScript
-├── 📄 package.json            # Dependências e scripts
-├── 📄 package-lock.json       # Lock file das dependências
-├── 📄 .env.local              # Variáveis de ambiente (API Key Gemini)
-├── 📄 .gitignore              # Arquivos ignorados pelo Git
-├── 📄 README.md               # Instruções básicas do projeto
-│
-├── 📂 components/             # Componentes React
-│   ├── 📄 Navbar.tsx          # Barra de navegação
-│   ├── 📄 Hero.tsx            # Seção hero principal
-│   ├── 📄 Collections.tsx     # Seção de coleções de portas
-│   ├── 📄 Features.tsx        # Seção de diferenciais
-│   ├── 📄 Gallery.tsx         # Galeria de projetos
-│   ├── 📄 Footer.tsx          # Rodapé
-│   └── 📄 WhatsAppButton.tsx  # Botão flutuante do WhatsApp
-│
-└── 📂 node_modules/           # Dependências instaladas
+```text
+soroportas---portas-de-alto-padr-o/
+|-- App.tsx
+|-- index.tsx
+|-- index.css
+|-- constants.ts
+|-- types.ts
+|-- vite.config.ts
+|-- vercel.json
+|-- DOCUMENTACAO.md
+|-- docs/
+|   `-- GERENCIAMENTO_DE_IMAGENS.md
+|-- layouts/
+|   `-- SiteLayout.tsx
+|-- pages/
+|   |-- HomePage.tsx
+|   |-- AboutPage.tsx
+|   |-- ServicesPage.tsx
+|   |-- ProjectsPage.tsx
+|   |-- ContactPage.tsx
+|   |-- CollectionDetailPage.tsx
+|   |-- PrivacyPage.tsx
+|   |-- TermsPage.tsx
+|   `-- NotFoundPage.tsx
+|-- components/
+|   |-- Navbar.tsx
+|   |-- Footer.tsx
+|   |-- WhatsAppButton.tsx
+|   |-- Hero.tsx
+|   |-- Collections.tsx
+|   |-- Features.tsx
+|   |-- Process.tsx
+|   |-- Gallery.tsx
+|   |-- Lightbox.tsx
+|   |-- Testimonials.tsx
+|   |-- FAQ.tsx
+|   |-- CustomCursor.tsx
+|   |-- QuoteModal.tsx
+|   `-- seo/
+|      `-- SeoHead.tsx
+|-- seo/
+|   `-- routeSeo.ts
+`-- public/
+    |-- robots.txt
+    |-- sitemap.xml
+    `-- assets/
+        |-- brand/
+        |-- hero/
+        |-- collections/
+        `-- gallery/
 ```
 
 ---
 
-## 🧩 Componentes
+## 4) Rotas Publicas
 
-### 1. **Navbar** (`components/Navbar.tsx`)
+Configuradas em `App.tsx`:
 
-**Descrição:** Barra de navegação fixa no topo com comportamento responsivo.
+| Rota | Pagina |
+|---|---|
+| `/` | HomePage |
+| `/sobre-nos` | AboutPage |
+| `/servicos` | ServicesPage |
+| `/projetos` | ProjectsPage |
+| `/contato` | ContactPage |
+| `/colecoes/:slug` | CollectionDetailPage |
+| `/politica-de-privacidade` | PrivacyPage |
+| `/termos-de-uso` | TermsPage |
+| `*` | NotFoundPage |
 
-**Funcionalidades:**
-- Muda de transparente para branco com blur ao rolar a página
-- Menu hambúrguer para dispositivos móveis
-- Links âncora para seções do site
-- Botão "Fale Conosco" que direciona para WhatsApp
+Slugs atualmente publicados:
 
-**Estados:**
-- `isScrolled`: Controla a aparência baseada na posição do scroll
-- `isMobileMenuOpen`: Controla exibição do menu mobile
-
-**Links de Navegação:**
-- Modelos → `#collections`
-- Qualidade → `#features`
-- Ambientes → `#gallery`
-
----
-
-### 2. **Hero** (`components/Hero.tsx`)
-
-**Descrição:** Seção principal (above the fold) com imagem de fundo e call-to-action.
-
-**Funcionalidades:**
-- Imagem de fundo com efeito de zoom suave na entrada
-- Overlay escuro para legibilidade
-- Headline e subheadline animados
-- Botão CTA principal para WhatsApp
-
-**Animações (Framer Motion):**
-- Imagem: scale de 1.1 para 1 (2s)
-- Textos: fade-in + slide-up com delays escalonados
-
-**Conteúdo:**
-- Headline: "A porta certa muda o ambiente inteiro."
-- CTA: "Falar com um especialista"
+- `/colecoes/entrada-principal`
+- `/colecoes/linha-lacca-touch`
+- `/colecoes/linha-amadeirada`
 
 ---
 
-### 3. **Collections** (`components/Collections.tsx`)
+## 5) Arquitetura de Renderizacao
 
-**Descrição:** Apresenta as 3 linhas de produtos da empresa.
+Fluxo atual:
 
-**Coleções:**
-
-| ID | Título | Categoria | Descrição |
-|----|--------|-----------|-----------|
-| `entrance` | Entrada Principal | Primeira Impressão | Portas pivotantes e maciças |
-| `interior` | Interiores & Privacidade | Conforto | Isolamento acústico |
-| `social` | Integração de Ambientes | Amplitude | Sistemas de correr e vidro |
-
-**Funcionalidades:**
-- Grid responsivo (1 coluna mobile, 3 colunas desktop)
-- Efeito de zoom hover nas imagens
-- Link para consultar disponibilidade via WhatsApp
-- Animação de entrada escalonada
-
----
-
-### 4. **Features** (`components/Features.tsx`)
-
-**Descrição:** Destaca os 4 diferenciais da marca.
-
-**Diferenciais:**
-
-| ID | Título | Ícone | Descrição |
-|----|--------|-------|-----------|
-| `material` | Madeira Nobre Selecionada | TreeDeciduous | Lotes certificados e secos em estufa |
-| `finish` | Acabamento de Precisão | Gem | Vernizes de alta performance |
-| `installation` | Vedação e Silêncio | VolumeX | Borrachas amortecedoras |
-| `consultancy` | Curadoria Técnica | ClipboardCheck | Análise técnica de projetos |
-
-**Funcionalidades:**
-- Grid responsivo (1-2-4 colunas)
-- Ícones em círculos com fundo verde claro
-- Efeito hover com sombra suave
-
----
-
-### 5. **Gallery** (`components/Gallery.tsx`)
-
-**Descrição:** Galeria de fotos de projetos reais.
-
-**Funcionalidades:**
-- Grid assimétrico (imagens maiores alternadas)
-- 4 imagens do Unsplash
-- Efeito de zoom hover nas imagens
-- Overlay escuro que clareia no hover
-- Link CTA: "Quero um resultado assim"
-
-**Layout do Grid:**
-- Imagens 1 e 4: `col-span-2` (largura dupla, aspect 21:9)
-- Imagens 2 e 3: largura normal (aspect 4:3)
-
----
-
-### 6. **Footer** (`components/Footer.tsx`)
-
-**Descrição:** Rodapé com informações de contato e navegação.
-
-**Seções:**
-1. **Brand** - Logo, nome e descrição da empresa
-2. **Navegação** - Links para seções do site
-3. **Atendimento** - Horários e informações do showroom
-4. **Botão WhatsApp** - CTA para iniciar conversa
-
-**Informações de Horário:**
-- Segunda a Sexta: 09h às 18h
-- Sábado: 09h às 13h
-
----
-
-### 7. **WhatsAppButton** (`components/WhatsAppButton.tsx`)
-
-**Descrição:** Botão flutuante fixo no canto inferior direito.
-
-**Funcionalidades:**
-- Sempre visível durante navegação
-- Texto oculto em mobile, visível em desktop
-- Indicador de notificação pulsante (bolinha vermelha)
-- Efeito de scale no hover
-- Abre WhatsApp em nova aba
-
----
-
-## 🎨 Design System
-
-### Paleta de Cores
-
-```css
-/* Cores da Marca */
---brand-dark: #064E3B;     /* Emerald 900 - Verde escuro principal */
---brand-primary: #059669;  /* Emerald 600 - Verde primário */
---brand-light: #ECFDF5;    /* Emerald 50 - Verde claro (backgrounds) */
-
-/* Escala de Cinzas (Tailwind defaults) */
---gray-50 a --gray-900
+```text
+index.tsx
+  -> HelmetProvider
+    -> App (BrowserRouter)
+      -> SiteLayout
+        -> Navbar
+        -> Outlet (pagina atual)
+        -> Footer
+        -> WhatsAppButton
+        -> QuoteModal
 ```
 
-### Tipografia
+Detalhes importantes:
 
-| Uso | Fonte | Pesos |
-|-----|-------|-------|
-| **Títulos e Destaques** | Playfair Display (serif) | 400, 600, 400i |
-| **Corpo e UI** | Inter (sans-serif) | 300, 400, 500, 600 |
-
-**Configuração no Tailwind:**
-```javascript
-fontFamily: {
-  sans: ['Inter', 'sans-serif'],
-  serif: ['Playfair Display', 'serif'],
-}
-```
-
-### Estilos de Botões
-
-| Tipo | Classe Base | Uso |
-|------|-------------|-----|
-| **Primário (Light)** | `bg-white text-brand-dark` | CTAs em backgrounds escuros |
-| **Primário (Dark)** | `bg-brand-dark text-white` | CTAs em backgrounds claros |
-| **Link** | `text-brand-dark border-b` | Links inline com sublinhado |
-
-### Animações
-
-**Biblioteca:** Framer Motion
-
-| Efeito | Propriedades | Duração |
-|--------|--------------|---------|
-| **Fade In + Slide Up** | opacity: 0→1, y: 20→0 | 0.6-0.8s |
-| **Zoom In** | scale: 1.1→1 | 2s |
-| **Hover Scale** | scale: 1→1.05 | 1s |
+- `SiteLayout.tsx` dispara `prerender-ready` a cada troca de rota para suportar o `vite-plugin-prerender`.
+- Navegacao interna combina `Link` (rotas) e ancora para secoes da home (`#collections`, `#features`, `#faq`).
+- Em `Collections.tsx`, a foto e o link "Saiba mais" levam para a rota da colecao.
 
 ---
 
-## 📝 Conteúdo e Constantes
+## 6) SEO Tecnico (Implementado)
 
-### Arquivo: `constants.ts`
+### 6.1 Mapa central de SEO
 
-```typescript
-// Configurações da Marca
-BRAND_NAME = "Soroportas"
-WHATSAPP_NUMBER = "5511999999999"
-WHATSAPP_LINK = "https://wa.me/..."
+Arquivo: `seo/routeSeo.ts`
 
-// Conteúdo do Hero
-HERO_CONTENT = {
-  headline: "A porta certa muda o ambiente inteiro.",
-  subheadline: "Portas de alto padrão com acabamento preciso...",
-  cta: "Falar com um especialista"
-}
+- Define SEO por rota via `ROUTE_SEO`.
+- Define `PRERENDER_ROUTES`.
+- Define `SITEMAP_ENTRIES`.
+- Define `CONTACT_NAP` para consistencia de dados institucionais.
+- Exponibiliza `getCollectionSeoBySlug(slug)` para rotas de colecao.
 
-// Arrays de dados
-COLLECTIONS: CollectionItem[]  // 3 itens
-FEATURES: FeatureItem[]        // 4 itens
-GALLERY_IMAGES: string[]       // 4 URLs
-```
+### 6.2 Tags SEO por pagina
 
-### Arquivo: `types.ts`
+Arquivo: `components/seo/SeoHead.tsx`
 
-```typescript
-interface CollectionItem {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  category: string;
-}
+- `<title>` e `meta description`
+- `meta robots`
+- `link rel="canonical"`
+- Open Graph (`og:*`)
+- Twitter Card (`twitter:*`)
+- JSON-LD (`application/ld+json`)
 
-interface FeatureItem {
-  id: string;
-  title: string;
-  description: string;
-  iconName: string;
-}
+### 6.3 Schemas JSON-LD usados
 
-interface Testimonial {
-  id: string;
-  text: string;
-  author: string;
-  location: string;
-}
-```
+- `Organization`
+- `HomeAndConstructionBusiness` (LocalBusiness)
+- `WebSite`
+- `BreadcrumbList` (paginas internas e paginas de colecao)
+
+### 6.4 Robots e Sitemap
+
+- `public/robots.txt`: libera rastreio e aponta para sitemap canonico.
+- `public/sitemap.xml`: inclui todas as rotas publicas, incluindo as 3 paginas de colecao.
+
+### 6.5 Dominio canonico
+
+- `https://www.soroportas.com`
 
 ---
 
-## ▶️ Como Executar
+## 7) Componentes
 
-### Pré-requisitos
+### Estrutura principal
 
-- Node.js instalado (versão recomendada: 18+)
-- npm ou yarn
+- `Navbar`: menu desktop/mobile, links de paginas e secoes.
+- `Footer`: navegacao, contato (NAP) e links legais.
+- `WhatsAppButton`: CTA flutuante global.
+- `QuoteModal`: formulario multi-etapas de orcamento.
+- `CustomCursor`: cursor customizado para dispositivos com hover.
 
-### Instalação
+### Home (`HomePage.tsx`)
+
+Ordem de secoes:
+
+1. `Hero`
+2. `Collections`
+3. `Features`
+4. `Process`
+5. `Gallery` (com `Lightbox`)
+6. `Testimonials`
+7. `FAQ`
+
+### Detalhe de colecao (`CollectionDetailPage.tsx`)
+
+- Leitura de `slug` via `useParams`.
+- Busca da colecao correspondente em `COLLECTIONS`.
+- Filtro por cor com estado ativo.
+- Galeria por cor (nesta fase com `images: []`, exibindo estado vazio).
+- CTA de WhatsApp para conversao.
+
+---
+
+## 8) Conteudo Centralizado
+
+Arquivo: `constants.ts`
+
+- Dados da marca (`BRAND_NAME`, `SITE_URL`).
+- Contato/NAP (`CONTACT_PHONE_*`, `CONTACT_EMAIL`, cidade/estado, endereco).
+- `WHATSAPP_LINK`.
+- Logos da marca.
+- Midias e responsividade de imagens (`HERO_IMAGES`, `COLLECTIONS`, `GALLERY_ITEMS`).
+- Conteudo comercial (`HERO_CONTENT`, `FEATURES`, `PROJECT_STATS`).
+
+Contrato de colecoes:
+
+- `COLLECTIONS` agora inclui `slug` e `colors`.
+- Cada cor possui `id`, `name` e `images`.
+- `images` foi iniciado vazio na fase pre-upload e sera preenchido quando os arquivos forem enviados.
+
+Arquivo: `types.ts`
+
+- Tipos de dados de UI (`CollectionItem`, `FeatureItem`, etc.).
+- Novos tipos: `CollectionColorOption`, `CollectionColorImage`.
+- Contrato SEO por rota (`RouteSEO`).
+
+---
+
+## 9) Midia e Performance
+
+Implementacoes atuais:
+
+- Imagens locais em `public/assets`.
+- Uso de `srcSet` WebP + `sizes` em Hero, Collections e Gallery.
+- Hero com `fetchPriority="high"` e `loading="eager"`.
+- Imagens fora da dobra com `loading="lazy"`.
+
+Padrao de variantes WebP:
+
+- `-480.webp`
+- `-768.webp`
+- `-1024.webp`
+- `-1280.webp`
+
+Guia operacional: `docs/GERENCIAMENTO_DE_IMAGENS.md`.
+
+---
+
+## 10) Build, Preview e Execucao
+
+Comandos:
 
 ```bash
-# 1. Navegar até a pasta do projeto
-cd soroportas---portas-de-alto-padrão
-
-# 2. Instalar dependências
 npm install
-
-# 3. Configurar variáveis de ambiente (se necessário)
-# Editar arquivo .env.local com sua GEMINI_API_KEY
-
-# 4. Iniciar servidor de desenvolvimento
 npm run dev
+npm run build
+npm run preview
 ```
 
-### Scripts Disponíveis
+Observacoes:
 
-| Comando | Descrição |
-|---------|-----------|
-| `npm run dev` | Inicia servidor de desenvolvimento (Vite) |
-| `npm run build` | Gera build de produção |
-| `npm run preview` | Preview do build de produção |
-
-### Acessar o Site
-
-Após executar `npm run dev`, acesse:
-```
-http://localhost:5173
-```
+- Atualmente nao ha dependencia funcional de API externa para o front-end.
+- `GEMINI_API_KEY` ainda aparece em `vite.config.ts`, mas nao e consumida por codigo de interface neste estado do projeto.
 
 ---
 
-## 🏗️ Arquitetura e Fluxo
+## 11) Deploy (Vercel)
 
-### Fluxo de Renderização
+Arquivo: `vercel.json`
 
-```
-index.html
-    └── <div id="root">
-            └── index.tsx (ReactDOM.createRoot)
-                    └── App.tsx
-                            ├── Navbar
-                            ├── <main>
-                            │     ├── Hero
-                            │     ├── Collections
-                            │     ├── Features
-                            │     └── Gallery
-                            ├── Footer
-                            └── WhatsAppButton
-```
+- Build com `npm run build`.
+- Output em `dist`.
+- Fallback para `index.html` (SPA) para suportar navegacao direta em rotas.
 
-### Padrão de Componentes
+Com o pre-render ativo em producao (`vite.config.ts`):
 
-- **Functional Components** com TypeScript
-- **React.FC** como tipo de componente
-- **Props tipadas** via interfaces em `types.ts`
-- **Constantes centralizadas** em `constants.ts`
-
-### Gerenciamento de Estado
-
-- **useState** para estados locais (scroll, menu mobile)
-- **useEffect** para side effects (scroll listener)
-- Sem gerenciamento de estado global (não necessário)
+- As rotas de `PRERENDER_ROUTES` geram HTML estatico para melhorar indexacao.
 
 ---
 
-## 🔗 Integrações
+## 12) Checklist de Manutencao da Documentacao
 
-### WhatsApp Business
+Sempre atualizar esta documentacao quando houver alteracao em:
 
-**Implementação:** Deep link com mensagem pré-definida
-
-```typescript
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá,%20gostaria%20de%20falar%20com%20um%20especialista%20sobre%20as%20portas.`;
-```
-
-**Pontos de contato:**
-1. Navbar - botão "Fale Conosco"
-2. Hero - CTA principal
-3. Collections - link em cada coleção
-4. Gallery - link "Quero um resultado assim"
-5. Footer - botão grande
-6. WhatsAppButton - botão flutuante
-
-### Imagens (Unsplash)
-
-Todas as imagens são carregadas via CDN do Unsplash:
-
-| Uso | URL Base |
-|-----|----------|
-| Hero | images.unsplash.com/photo-1600585154340... |
-| Coleções | images.unsplash.com/photo-1517646331032... |
-| Galeria | images.unsplash.com/photo-1620626012053... |
-
-**Parâmetros de otimização:**
-- `q=80` - Qualidade 80%
-- `w=2070` - Largura máxima
-- `auto=format` - Formato automático
-- `fit=crop` - Recorte adaptativo
-
-### Google Fonts
-
-```html
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-```
-
----
-
-## ⚙️ Considerações Técnicas
-
-### SEO
-
-- ✅ Meta tag `description` configurada
-- ✅ Tag `<title>` descritiva
-- ✅ Atributo `lang="pt-BR"` no HTML
-- ✅ Alt text nas imagens
-- ✅ Estrutura semântica (header, main, footer, section)
-
-### Performance
-
-- ⚠️ Imagens carregadas de CDN externo (Unsplash)
-- ⚠️ TailwindCSS via CDN (considerar build local para produção)
-- ✅ Lazy loading implícito via viewport animations
-- ✅ Fonts com display=swap
-
-### Acessibilidade
-
-- ✅ `aria-label` no botão do WhatsApp
-- ✅ Contraste adequado nas cores
-- ✅ Navegação por teclado funcional
-- ⚠️ Pode melhorar: adicionar mais aria-labels e roles
-
-### Responsividade
-
-- ✅ Mobile-first approach
-- ✅ Breakpoints: `sm`, `md`, `lg`
-- ✅ Menu hamburger para mobile
-- ✅ Grids adaptativos
-
-### Possíveis Melhorias Futuras
-
-1. **Lazy loading de imagens** - Implementar loading="lazy"
-2. **Build do Tailwind** - Remover CDN e fazer build local
-3. **Imagens locais ou otimizadas** - Usar serviço de otimização
-4. **Formulário de contato** - Alternativa ao WhatsApp
-5. **Analytics** - Integrar Google Analytics ou similar
-6. **Página de Produto** - Detalhes individuais de cada porta
-7. **Blog/Conteúdo** - SEO orgânico com artigos
-
----
-
-## 📞 Contato e Suporte
-
-Para dúvidas sobre o projeto ou suporte técnico, entre em contato através do WhatsApp configurado no sistema.
-
----
-
-*Documento gerado automaticamente com base na análise do código-fonte.*
+- Rotas de `App.tsx`.
+- SEO central em `seo/routeSeo.ts`.
+- Estrutura de imagens em `public/assets`.
+- Contratos de `constants.ts` e `types.ts`.
+- Config de build/deploy (`vite.config.ts`, `vercel.json`, `robots.txt`, `sitemap.xml`).

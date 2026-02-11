@@ -1,3 +1,7 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ========================================
    SOROPORTAS - ESTILOS PREMIUM GLOBAIS
    ======================================== */
@@ -26,7 +30,7 @@
   transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* Esconder cursor padrão quando mouse move */
+/* Esconder cursor padrÃ£o quando mouse move */
 body.has-custom-cursor {
   cursor: none;
 }
@@ -38,7 +42,7 @@ body.has-custom-cursor [role="button"] {
 }
 
 /* ----------------------------------------
-   2. SMOOTH SCROLL E TRANSIÇÕES GLOBAIS
+   2. SMOOTH SCROLL E TRANSIÃ‡Ã•ES GLOBAIS
    ---------------------------------------- */
 html {
   scroll-behavior: smooth;
@@ -51,7 +55,7 @@ html {
 }
 
 /* ----------------------------------------
-   3. ANIMAÇÕES CUSTOMIZADAS
+   3. ANIMAÃ‡Ã•ES CUSTOMIZADAS
    ---------------------------------------- */
 
 /* Fade In Up */

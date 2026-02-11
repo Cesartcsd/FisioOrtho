@@ -179,7 +179,7 @@ const Process: React.FC = () => {
                 >
                     <p className="text-gray-400 mb-4">Prazo médio total: 20-35 dias</p>
                     <a
-                        href="#contact"
+                        href="/contato"
                         className="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-emerald-500 transition-all duration-300"
                     >
                         Iniciar meu projeto

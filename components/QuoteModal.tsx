@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle, Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { BRAND_NAME, WHATSAPP_LINK } from '../constants';
+import { CONTACT_CITY, CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_STATE, WHATSAPP_LINK } from '../constants';
 
 interface QuoteModalProps {
     isOpen: boolean;
@@ -101,15 +101,15 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3 text-sm">
                                         <Phone className="w-5 h-5 text-brand-primary" />
-                                        <span>(11) 99999-9999</span>
+                                        <span>{CONTACT_PHONE_DISPLAY}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm">
                                         <Mail className="w-5 h-5 text-brand-primary" />
-                                        <span>contato@soroportas.com.br</span>
+                                        <span>{CONTACT_EMAIL}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm">
                                         <MapPin className="w-5 h-5 text-brand-primary" />
-                                        <span>São Paulo, SP</span>
+                                        <span>{CONTACT_CITY}, {CONTACT_STATE}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm">
                                         <Clock className="w-5 h-5 text-brand-primary" />
@@ -207,7 +207,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                                                                 value={formData.phone}
                                                                 onChange={handleChange}
                                                                 className={inputClass}
-                                                                placeholder="(11) 99999-9999"
+                                                                placeholder={CONTACT_PHONE_DISPLAY}
                                                                 required
                                                             />
                                                         </div>

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { COLLECTIONS, WHATSAPP_LINK } from '../constants';
 import { ArrowUpRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Collections: React.FC = () => {
   const sectionRef = useRef(null);
@@ -65,7 +66,7 @@ const Collections: React.FC = () => {
             </span>
           </motion.div>
 
-          <motion.h3
+          <motion.h2
             variants={headerVariants}
             className="font-serif text-4xl md:text-5xl text-gray-900 mb-6 leading-tight"
           >
@@ -80,7 +81,7 @@ const Collections: React.FC = () => {
               />
             </span>{' '}
             da sua casa
-          </motion.h3>
+          </motion.h2>
 
           <motion.p
             variants={headerVariants}
@@ -97,7 +98,7 @@ const Collections: React.FC = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {COLLECTIONS.map((item, index) => (
+          {COLLECTIONS.map((item) => (
             <motion.div
               key={item.id}
               className="group"
@@ -110,8 +111,17 @@ const Collections: React.FC = () => {
               >
                 {/* Image Container */}
                 <div className="relative overflow-hidden aspect-[3/4] mb-6 rounded-lg bg-gray-100 image-reveal">
+                  <Link
+                    to={`/colecoes/${item.slug}`}
+                    className="absolute inset-0 z-10"
+                    aria-label={`Abrir coleção ${item.title}`}
+                  />
                   <img
                     src={item.imageUrl}
+                    srcSet={item.imageWebpSrcSet}
+                    sizes={item.imageSizes}
+                    loading="lazy"
+                    decoding="async"
                     alt={item.title}
                     className="w-full h-full object-cover"
                   />
@@ -127,7 +137,7 @@ const Collections: React.FC = () => {
                   </div>
 
                   {/* Hover Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <a
                       href={WHATSAPP_LINK}
                       target="_blank"
@@ -150,10 +160,8 @@ const Collections: React.FC = () => {
                   </p>
 
                   {/* Animated link */}
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to={`/colecoes/${item.slug}`}
                     className="group/link inline-flex items-center text-sm font-medium text-brand-dark pt-2"
                   >
                     <span className="relative">
@@ -161,7 +169,7 @@ const Collections: React.FC = () => {
                       <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-primary group-hover/link:w-full transition-all duration-300"></span>
                     </span>
                     <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-300" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

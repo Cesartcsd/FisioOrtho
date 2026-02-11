@@ -1,38 +1,34 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Collections from './components/Collections';
-import Features from './components/Features';
-import Process from './components/Process';
-import Gallery from './components/Gallery';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
-import CustomCursor from './components/CustomCursor';
-import QuoteModal from './components/QuoteModal';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SiteLayout from './layouts/SiteLayout';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
+import NotFoundPage from './pages/NotFoundPage';
+import CollectionDetailPage from './pages/CollectionDetailPage';
 
-function App() {
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-
+const App: React.FC = () => {
   return (
-    <div className="bg-white min-h-screen font-sans text-gray-900 selection:bg-brand-primary selection:text-white">
-      <CustomCursor />
-      <Navbar onOpenQuote={() => setIsQuoteModalOpen(true)} />
-      <main>
-        <Hero onOpenQuote={() => setIsQuoteModalOpen(true)} />
-        <Collections />
-        <Features />
-        <Process />
-        <Gallery />
-        <Testimonials />
-        <FAQ />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-      <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<SiteLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="sobre-nos" element={<AboutPage />} />
+          <Route path="servicos" element={<ServicesPage />} />
+          <Route path="projetos" element={<ProjectsPage />} />
+          <Route path="contato" element={<ContactPage />} />
+          <Route path="colecoes/:slug" element={<CollectionDetailPage />} />
+          <Route path="politica-de-privacidade" element={<PrivacyPage />} />
+          <Route path="termos-de-uso" element={<TermsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, ChevronDown, FileText } from 'lucide-react';
-import { HERO_CONTENT, WHATSAPP_LINK } from '../constants';
+﻿import React, { useEffect, useState } from 'react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { HERO_CONTENT, WHATSAPP_LINK, HERO_IMAGES } from '../constants';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface HeroProps {
@@ -73,8 +73,13 @@ const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
           className="w-full h-[120%] -mt-[10%]"
         >
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-            alt="Porta de entrada de alto padrão"
+            src={HERO_IMAGES.main.src}
+            srcSet={HERO_IMAGES.main.webpSrcSet}
+            sizes={HERO_IMAGES.main.sizes}
+            alt={HERO_IMAGES.main.alt}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
             className="w-full h-full object-cover"
           />
         </motion.div>
@@ -107,14 +112,6 @@ const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium">
-              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-              Portas de Alto Padrão
-            </span>
-          </motion.div>
-
           {/* Headline */}
           <motion.h1
             variants={itemVariants}

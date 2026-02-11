@@ -1,9 +1,26 @@
 export interface CollectionItem {
   id: string;
+  slug: string;
   title: string;
   description: string;
   imageUrl: string;
   category: string;
+  imageWebpSrcSet?: string;
+  imageSizes?: string;
+  colors: CollectionColorOption[];
+}
+
+export interface CollectionColorImage {
+  src: string;
+  alt: string;
+  webpSrcSet?: string;
+  sizes?: string;
+}
+
+export interface CollectionColorOption {
+  id: string;
+  name: string;
+  images: CollectionColorImage[];
 }
 
 export interface FeatureItem {
@@ -18,4 +35,15 @@ export interface Testimonial {
   text: string;
   author: string;
   location: string;
+}
+
+export interface RouteSEO {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  robots?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  jsonLd?: Array<Record<string, unknown>>;
 }
