@@ -35,7 +35,7 @@ Dominio canonico configurado:
 ## Principais recursos
 
 - Navegacao multipagina com `react-router-dom`.
-- Head tags por rota com `react-helmet-async`.
+- Head tags por rota com componente nativo `SeoHead`.
 - Schemas JSON-LD para Organization, LocalBusiness, WebSite e BreadcrumbList.
 - Pre-render das rotas publicas com `vite-plugin-prerender`.
 - Midias locais em `public/assets` com `srcset` WebP e `sizes`.
@@ -47,7 +47,7 @@ Dominio canonico configurado:
 - `typescript`
 - `vite`
 - `react-router-dom`
-- `react-helmet-async`
+- `SeoHead` nativo (gerenciamento de meta tags via DOM)
 - `framer-motion`
 - `tailwindcss` + `postcss` + `autoprefixer`
 - `vite-plugin-prerender`
@@ -243,3 +243,4 @@ Verifique:
 
 - `DOCUMENTACAO.md`
 - `docs/GERENCIAMENTO_DE_IMAGENS.md`
+

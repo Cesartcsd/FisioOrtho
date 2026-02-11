@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 import { SITE_URL } from '../../constants';
 import { RouteSEO } from '../../types';
 
@@ -14,33 +13,55 @@ const SeoHead: React.FC<SeoHeadProps> = ({ seo }) => {
   const ogImage = seo.ogImage ?? `${SITE_URL}/assets/hero/hero-main-1280.webp`;
   const twitterCard = seo.twitterCard ?? 'summary_large_image';
 
-  return (
-    <Helmet prioritizeSeoTags>
-      <title>{seo.title}</title>
-      <meta name="description" content={seo.description} />
-      <meta name="robots" content={robots} />
-      <link rel="canonical" href={canonicalUrl} />
+  useEffect(() => {
+    const upsertMeta = (attribute: 'name' | 'property', key: string, content: string): void => {
+      let meta = document.head.querySelector(`meta[${attribute}="${key}"]`) as HTMLMetaElement | null;
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, key);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
 
-      <meta property="og:locale" content="pt_BR" />
-      <meta property="og:type" content={ogType} />
-      <meta property="og:site_name" content="Soroportas" />
-      <meta property="og:title" content={seo.title} />
-      <meta property="og:description" content={seo.description} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={ogImage} />
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
 
-      <meta name="twitter:card" content={twitterCard} />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:description" content={seo.description} />
-      <meta name="twitter:image" content={ogImage} />
+    document.title = seo.title;
+    upsertMeta('name', 'description', seo.description);
+    upsertMeta('name', 'robots', robots);
 
-      {seo.jsonLd?.map((schema, index) => (
-        <script key={`${seo.canonicalPath}-${index}`} type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      ))}
-    </Helmet>
-  );
+    upsertMeta('property', 'og:locale', 'pt_BR');
+    upsertMeta('property', 'og:type', ogType);
+    upsertMeta('property', 'og:site_name', 'Soroportas');
+    upsertMeta('property', 'og:title', seo.title);
+    upsertMeta('property', 'og:description', seo.description);
+    upsertMeta('property', 'og:url', canonicalUrl);
+    upsertMeta('property', 'og:image', ogImage);
+
+    upsertMeta('name', 'twitter:card', twitterCard);
+    upsertMeta('name', 'twitter:title', seo.title);
+    upsertMeta('name', 'twitter:description', seo.description);
+    upsertMeta('name', 'twitter:image', ogImage);
+
+    const existingJsonLd = document.head.querySelectorAll('script[data-seo-jsonld="true"]');
+    existingJsonLd.forEach((node) => node.remove());
+
+    seo.jsonLd?.forEach((schema) => {
+      const script = document.createElement('script');
+      script.setAttribute('type', 'application/ld+json');
+      script.setAttribute('data-seo-jsonld', 'true');
+      script.text = JSON.stringify(schema);
+      document.head.appendChild(script);
+    });
+  }, [canonicalUrl, ogImage, ogType, robots, seo]);
+
+  return null;
 };
 
 export default SeoHead;

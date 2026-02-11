@@ -27,7 +27,7 @@ Estado atual do projeto:
 | TypeScript | ~5.8.2 | Tipagem estatica |
 | Vite | ^6.2.0 | Dev server e build |
 | React Router DOM | ^7.13.0 | Roteamento multipagina |
-| React Helmet Async | ^2.0.5 | SEO tags por rota |
+| SEO Head nativo | interno | SEO tags por rota sem dependencia externa |
 | Framer Motion | 11.16.0 | Animacoes |
 | Lucide React | ^0.562.0 | Icones |
 | Tailwind CSS | ^3.4.1 | Estilizacao |
@@ -123,14 +123,13 @@ Fluxo atual:
 
 ```text
 index.tsx
-  -> HelmetProvider
-    -> App (BrowserRouter)
-      -> SiteLayout
-        -> Navbar
-        -> Outlet (pagina atual)
-        -> Footer
-        -> WhatsAppButton
-        -> QuoteModal
+  -> App (BrowserRouter)
+    -> SiteLayout
+      -> Navbar
+      -> Outlet (pagina atual)
+      -> Footer
+      -> WhatsAppButton
+      -> QuoteModal
 ```
 
 Detalhes importantes:
@@ -300,3 +299,4 @@ Sempre atualizar esta documentacao quando houver alteracao em:
 - Estrutura de imagens em `public/assets`.
 - Contratos de `constants.ts` e `types.ts`.
 - Config de build/deploy (`vite.config.ts`, `vercel.json`, `robots.txt`, `sitemap.xml`).
+
