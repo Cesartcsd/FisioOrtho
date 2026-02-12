@@ -5,6 +5,7 @@ import SeoHead from '../components/seo/SeoHead';
 import { COLLECTIONS, WHATSAPP_LINK } from '../constants';
 import NotFoundPage from './NotFoundPage';
 import { getCollectionSeoBySlug } from '../seo/routeSeo';
+import Lightbox from '../components/Lightbox';
 
 const CollectionDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,6 +22,8 @@ const CollectionDetailPage: React.FC = () => {
   }, [slug]);
 
   const [activeColorId, setActiveColorId] = useState<string>('');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     if (collection?.colors?.length) {
@@ -118,8 +121,15 @@ const CollectionDetailPage: React.FC = () => {
 
             {hasImages && activeColor ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {activeColor.images.map((image) => (
-                  <article key={image.src} className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50">
+                {activeColor.images.map((image, index) => (
+                  <article
+                    key={image.src}
+                    className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 flex items-center justify-center cursor-zoom-in transition-transform hover:scale-[1.02]"
+                    onClick={() => {
+                      setPhotoIndex(index);
+                      setLightboxOpen(true);
+                    }}
+                  >
                     <img
                       src={image.src}
                       srcSet={image.webpSrcSet}
@@ -127,7 +137,7 @@ const CollectionDetailPage: React.FC = () => {
                       alt={image.alt}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-56 object-cover"
+                      className="w-full h-96 object-contain"
                     />
                   </article>
                 ))}
@@ -143,6 +153,18 @@ const CollectionDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {hasImages && activeColor && (
+        <Lightbox
+          images={activeColor.images.map((img) => img.src)}
+          titles={activeColor.images.map((img) => img.alt)}
+          currentIndex={photoIndex}
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          onNext={() => setPhotoIndex((prev) => (prev + 1) % activeColor.images.length)}
+          onPrev={() => setPhotoIndex((prev) => (prev - 1 + activeColor.images.length) % activeColor.images.length)}
+        />
+      )}
     </>
   );
 };

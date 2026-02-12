@@ -148,18 +148,18 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
       ]),
     ],
   },
-  collectionEntradaPrincipal: {
-    title: 'Entrada Principal | Soroportas',
+  collectionLaccaPet: {
+    title: 'Lacca Pet | Soroportas',
     description:
-      'Conheca a colecao Entrada Principal da Soroportas com linhas premium para fachadas residenciais e comerciais.',
-    canonicalPath: '/colecoes/entrada-principal',
+      'Descubra a coleção Lacca Pet da Soroportas, com superfície ultra resistente e sustentável feita de garrafas PET recicladas.',
+    canonicalPath: '/colecoes/lacca-pet',
     ogType: 'article',
-    ogImage: entranceCollectionImageUrl,
+    ogImage: laccaCollectionImageUrl, // Using existing or updated image variable if available, assuming re-use for now or update separately
     jsonLd: [
       buildBreadcrumbSchema([
         { name: 'Início', path: '/' },
         { name: 'Coleções', path: '/' },
-        { name: 'Entrada Principal', path: '/colecoes/entrada-principal' },
+        { name: 'Lacca Pet', path: '/colecoes/lacca-pet' },
       ]),
     ],
   },
@@ -232,7 +232,7 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
 };
 
 const COLLECTION_SEO_BY_SLUG: Record<string, RouteSEO> = {
-  'entrada-principal': ROUTE_SEO.collectionEntradaPrincipal,
+  'lacca-pet': ROUTE_SEO.collectionLaccaPet,
   'linha-lacca-touch': ROUTE_SEO.collectionLinhaLaccaTouch,
   'linha-amadeirada': ROUTE_SEO.collectionLinhaAmadeirada,
 };
@@ -247,7 +247,7 @@ export const PRERENDER_ROUTES = [
   '/servicos',
   '/projetos',
   '/contato',
-  '/colecoes/entrada-principal',
+  '/colecoes/lacca-pet',
   '/colecoes/linha-lacca-touch',
   '/colecoes/linha-amadeirada',
   '/politica-de-privacidade',
@@ -260,7 +260,7 @@ export const SITEMAP_ENTRIES = [
   { path: '/servicos', priority: '0.9', changefreq: 'monthly' },
   { path: '/projetos', priority: '0.8', changefreq: 'weekly' },
   { path: '/contato', priority: '0.9', changefreq: 'monthly' },
-  { path: '/colecoes/entrada-principal', priority: '0.8', changefreq: 'monthly' },
+  { path: '/colecoes/lacca-pet', priority: '0.8', changefreq: 'monthly' },
   { path: '/colecoes/linha-lacca-touch', priority: '0.8', changefreq: 'monthly' },
   { path: '/colecoes/linha-amadeirada', priority: '0.8', changefreq: 'monthly' },
   { path: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },
