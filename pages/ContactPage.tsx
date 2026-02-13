@@ -2,10 +2,8 @@
 import SeoHead from '../components/seo/SeoHead';
 import {
   CONTACT_ADDRESS,
-  CONTACT_CITY,
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
-  CONTACT_STATE,
   WHATSAPP_LINK,
 } from '../constants';
 import { ROUTE_SEO } from '../seo/routeSeo';
@@ -45,14 +43,14 @@ const ContactPage: React.FC = () => {
 
             <article className="rounded-2xl border border-gray-200 p-6">
               <h2 className="font-semibold text-xl text-gray-900 mb-3">Localização</h2>
-              <p className="text-gray-700 mb-1">{CONTACT_CITY} - {CONTACT_STATE}</p>
               <p className="text-gray-600">{CONTACT_ADDRESS}</p>
             </article>
 
             <article className="rounded-2xl border border-gray-200 p-6">
               <h2 className="font-semibold text-xl text-gray-900 mb-3">Horário de atendimento</h2>
-              <p className="text-gray-700">Segunda a Sexta: 09h às 18h</p>
-              <p className="text-gray-700">Sábado: 09h às 13h</p>
+              <p className="text-gray-700">Segunda a sexta-feira: 07:30 às 17:00</p>
+              <p className="text-gray-700">Sábado: 09:00 às 12:00</p>
+              <p className="text-gray-700">Domingo: Fechado</p>
             </article>
           </div>
 

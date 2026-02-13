@@ -6,16 +6,15 @@ const buildWebpSrcSet = (basePath: string, widths: number[]): string =>
 export const SITE_URL = 'https://www.soroportas.com';
 export const BRAND_NAME = 'Soroportas';
 
-export const CONTACT_PHONE_DISPLAY = '(15) 99760-0409';
-export const CONTACT_PHONE_E164 = '+5515997600409';
-export const CONTACT_EMAIL = 'contato@soroportas.com';
+export const CONTACT_PHONE_DISPLAY = '(15) 99700-2683';
+export const CONTACT_PHONE_E164 = '+5515997002683';
+export const CONTACT_EMAIL = 'comercial@soroportas.com';
 export const CONTACT_CITY = 'Sorocaba';
 export const CONTACT_STATE = 'SP';
 export const CONTACT_COUNTRY = 'Brasil';
-export const CONTACT_ADDRESS =
-  'Atendimento presencial somente com horário agendado em Sorocaba e região.';
+export const CONTACT_ADDRESS = 'Av. Gen. Osório, 1364 - Jardim Novo Horizonte, Sorocaba - SP, 18060-502';
 
-export const WHATSAPP_NUMBER = '5515997600409';
+export const WHATSAPP_NUMBER = '5515997002683';
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Ola,%20gostaria%20de%20falar%20com%20um%20especialista%20sobre%20as%20portas.`;
 
 export const BRAND_LOGOS = {
@@ -28,7 +27,7 @@ export const HERO_IMAGES = {
     src: '/assets/hero/hero-main.jpg',
     webpSrcSet: buildWebpSrcSet('/assets/hero/hero-main', [480, 768, 1024, 1280]),
     sizes: '100vw',
-    alt: 'Porta de entrada de alto padrão em ambiente residencial',
+    alt: 'Ambiente interno sofisticado com porta de alto padrão ao centro.',
   },
 };
 

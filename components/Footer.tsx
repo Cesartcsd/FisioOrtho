@@ -3,10 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { MessageCircle, MapPin, Clock, Phone, Mail } from 'lucide-react';
 import {
   BRAND_NAME,
-  CONTACT_CITY,
+  CONTACT_ADDRESS,
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
-  CONTACT_STATE,
   WHATSAPP_LINK,
 } from '../constants';
 
@@ -71,17 +70,16 @@ const Footer: React.FC = () => {
                 <Clock className="w-5 h-5 text-gray-400 mt-1" />
                 <div>
                   <p className="font-medium text-white mb-1">Horário</p>
-                  <p className="text-sm text-gray-300">Segunda a Sexta: 09h às 18h</p>
-                  <p className="text-sm text-gray-300">Sábado: 09h às 13h</p>
+                  <p className="text-sm text-gray-300">Segunda a sexta-feira: 07:30 às 17:00</p>
+                  <p className="text-sm text-gray-300">Sábado: 09:00 às 12:00</p>
+                  <p className="text-sm text-gray-300">Domingo: Fechado</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <MapPin className="w-5 h-5 text-gray-400 mt-1" />
                 <div>
                   <p className="font-medium text-white mb-1">Atendimento local</p>
-                  <p className="text-sm text-gray-300">
-                    {CONTACT_CITY}-{CONTACT_STATE} com atendimento presencial somente agendado.
-                  </p>
+                  <p className="text-sm text-gray-300">{CONTACT_ADDRESS}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
