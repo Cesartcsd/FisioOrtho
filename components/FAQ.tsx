@@ -12,49 +12,59 @@ interface FAQItem {
 const FAQ_ITEMS: FAQItem[] = [
     {
         id: 1,
-        question: "Qual o prazo de entrega das portas?",
-        answer: "O prazo varia de 20 a 35 dias, dependendo do modelo e acabamento escolhido. Portas sob medida com acabamentos especiais podem levar um pouco mais. Sempre informamos o prazo exato após a aprovação do projeto técnico.",
+        question: 'O que é um kit porta?',
+        answer:
+            'O kit porta pronta é um conjunto completo que chega à obra pronto para instalação, proporcionando praticidade, rapidez e excelente acabamento, sem a necessidade de ajustes complexos.',
     },
     {
         id: 2,
-        question: "Vocês fazem instalação?",
-        answer: "Sim! Temos uma equipe técnica própria especializada em instalação de portas de alto padrão. A instalação é feita com todo o cuidado para garantir vedação perfeita, alinhamento preciso e funcionamento silencioso. O serviço está incluso em todos os projetos.",
+        question: 'A SOROPORTAS trabalha com portas para acabamento?',
+        answer:
+            'Nossos produtos já são entregues prontos e acabados, eliminando a necessidade de pintura e reduzindo tempo e custo na obra.',
     },
     {
         id: 3,
-        question: "Qual a garantia dos produtos?",
-        answer: "Oferecemos 5 anos de garantia contra defeitos de fabricação em todas as nossas portas. Isso inclui empenamento, problemas de acabamento e funcionamento das ferragens. Manutenções preventivas estão disponíveis para estender ainda mais a vida útil do produto.",
+        question: 'A SOROPORTAS possui portas maciças?',
+        answer:
+            'Sim! Trabalhamos com três tipos de preenchimento — colmeia, sólida e sarrafeada — para atender diferentes necessidades de resistência e custo-benefício.',
     },
     {
         id: 4,
-        question: "Trabalham com quais tipos de madeira?",
-        answer: "Trabalhamos com madeiras nobres certificadas como Carvalho Europeu, Freijó, Jequitibá, Ipê e outras. Todas passam por secagem em estufa e tratamento contra pragas. Também oferecemos opções em MDF revestido para quem busca design com investimento otimizado.",
+        question: 'Qual material a SOROPORTAS utiliza?',
+        answer: 'Utilizamos MDF Ultra, garantindo alta qualidade, durabilidade e excelente padrão de acabamento.',
     },
     {
         id: 5,
-        question: "É possível fazer portas sob medida?",
-        answer: "Absolutamente! Todas as nossas portas são produzidas sob medida para seu projeto. Fabricamos em qualquer dimensão, incluindo portas pivotantes de grandes vãos. Nossa equipe técnica analisa a viabilidade estrutural de cada projeto.",
+        question: 'Quais cores de portas a SOROPORTAS oferece?',
+        answer: 'Disponibilizamos um leque completo com 15 opções de cores, ideais para diversos estilos de ambientes.',
     },
     {
         id: 6,
-        question: "Vocês atendem fora de São Paulo?",
-        answer: "Sim, entregamos para todo o Brasil. Para projetos fora de São Paulo, disponibilizamos atendimento remoto completo com medição assistida por vídeo. A instalação é feita por equipes parceiras certificadas ou nossa própria equipe, dependendo da localização.",
+        question: 'A SOROPORTAS trabalha com rodapés?',
+        answer: 'Sim! Oferecemos rodapés em MDF Ultra e Poliestireno, unindo resistência, estética e fácil manutenção.',
     },
     {
         id: 7,
-        question: "Como funciona o isolamento acústico?",
-        answer: "Nossas portas com isolamento acústico utilizam miolo colmeia ou maciço, borrachas de vedação perimetral e soleira automática. Conseguimos atenuação de até 35dB, ideal para quartos, home offices e salas de TV. A especificação exata é definida conforme sua necessidade.",
+        question: 'Qual marca de portas a SOROPORTAS trabalha?',
+        answer:
+            'Somos uma loja multimarcas, atuando atualmente com ênfase na marca Concrem, referência em qualidade, durabilidade e confiabilidade no mercado.',
     },
     {
         id: 8,
-        question: "Qual a forma de pagamento?",
-        answer: "Trabalhamos com pagamento parcelado: 50% na aprovação do projeto e 50% na entrega. Aceitamos transferência bancária, PIX e cartão de crédito em até 12x. Para projetos maiores, podemos negociar condições especiais.",
+        question: 'A SOROPORTAS possui produtos à pronta entrega?',
+        answer:
+            'Sim! Mantemos estoque de kit porta branca à pronta entrega, garantindo agilidade no atendimento e na obra.',
+    },
+    {
+        id: 9,
+        question: 'A SOROPORTAS realiza a instalação das portas?',
+        answer: 'Sim! Contamos com equipe especializada para oferecer o serviço',
     },
 ];
 
 const FAQ: React.FC = () => {
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, { once: true, margin: "-10%" });
+    const isInView = useInView(sectionRef, { once: true, margin: '-10%' });
     const [openItems, setOpenItems] = useState<number[]>([1]);
 
     const toggleItem = (id: number) => {
@@ -129,10 +139,13 @@ const FAQ: React.FC = () => {
                                     className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-gray-50 transition-colors"
                                 >
                                     <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
-                                    <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openItems.includes(item.id)
-                                        ? 'bg-brand-primary text-white rotate-0'
-                                        : 'bg-gray-100 text-gray-600'
-                                        }`}>
+                                    <span
+                                        className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                            openItems.includes(item.id)
+                                                ? 'bg-brand-primary text-white rotate-0'
+                                                : 'bg-gray-100 text-gray-600'
+                                        }`}
+                                    >
                                         {openItems.includes(item.id) ? (
                                             <Minus className="w-4 h-4" />
                                         ) : (
