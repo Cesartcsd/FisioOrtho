@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import SeoHead from '../components/seo/SeoHead';
 import {
   CONTACT_ADDRESS,
@@ -16,7 +16,7 @@ const ContactPage: React.FC = () => {
         <div className="container mx-auto px-6 max-w-5xl">
           <h1 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">Contato</h1>
           <p className="text-gray-700 text-lg leading-relaxed mb-10 max-w-3xl">
-            Atendemos por WhatsApp, telefone e e-mail. O atendimento presencial acontece com hora marcada.
+            Atendemos por WhatsApp, telefone e e-mail. Agende sua consulta ou tire dúvidas sobre nossos produtos e serviços.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-10">
@@ -48,16 +48,17 @@ const ContactPage: React.FC = () => {
 
             <article className="rounded-2xl border border-gray-200 p-6">
               <h2 className="font-semibold text-xl text-gray-900 mb-3">Horário de atendimento</h2>
-              <p className="text-gray-700">Segunda a sexta-feira: 07:30 às 17:00</p>
+              <p className="text-gray-700">Seg. a Sex.: 09:00 às 12:00 / 14:00 às 18:00</p>
               <p className="text-gray-700">Sábado: 09:00 às 12:00</p>
               <p className="text-gray-700">Domingo: Fechado</p>
+              <p className="text-gray-500 text-sm mt-2">※ Estacionamento exclusivo para clientes</p>
             </article>
           </div>
 
           <div className="rounded-2xl bg-brand-dark text-white p-8 md:p-10">
-            <h2 className="font-serif text-3xl mb-3">Receba orientação técnica</h2>
+            <h2 className="font-serif text-3xl mb-3">Agende sua consulta</h2>
             <p className="text-gray-200 mb-6">
-              Compartilhe seu projeto e nossa equipe ajuda a definir o modelo mais adequado para sua obra.
+              Entre em contato e nossa equipe irá ajudá-lo a agendar o melhor horário para sua avaliação.
             </p>
             <a
               href={WHATSAPP_LINK}
@@ -65,7 +66,7 @@ const ContactPage: React.FC = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 rounded-full bg-white text-brand-dark font-semibold hover:bg-gray-100 transition-colors"
             >
-              Falar com especialista
+              Agendar pelo WhatsApp
             </a>
           </div>
         </div>

@@ -38,7 +38,7 @@ const SeoHead: React.FC<SeoHeadProps> = ({ seo }) => {
 
     upsertMeta('property', 'og:locale', 'pt_BR');
     upsertMeta('property', 'og:type', ogType);
-    upsertMeta('property', 'og:site_name', 'Soroportas');
+    upsertMeta('property', 'og:site_name', 'FisioOrthopédicos');
     upsertMeta('property', 'og:title', seo.title);
     upsertMeta('property', 'og:description', seo.description);
     upsertMeta('property', 'og:url', canonicalUrl);

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.soroportas.com/sitemap.xml
+Sitemap: https://www.fisioorthopedicos.com.br/sitemap.xml

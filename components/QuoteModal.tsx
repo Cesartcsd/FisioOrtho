@@ -93,7 +93,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                         <div className="grid md:grid-cols-5">
                             {/* Left side - Info (hidden on mobile) */}
                             <div className="hidden md:block md:col-span-2 bg-brand-dark p-8 text-white">
-                                <h3 className="font-serif text-2xl mb-6">Solicite seu Orçamento</h3>
+                                <h3 className="font-serif text-2xl mb-6">Agende sua Avaliação</h3>
                                 <p className="text-gray-300 text-sm mb-8">
                                     Preencha o formulário e nossa equipe entrará em contato em até 24 horas.
                                 </p>
@@ -237,15 +237,15 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                                                                 required
                                                             >
                                                                 <option value="">Selecione...</option>
-                                                                <option value="new">Construção nova</option>
-                                                                <option value="renovation">Reforma</option>
-                                                                <option value="replacement">Substituição de portas</option>
-                                                                <option value="commercial">Projeto comercial</option>
+                                                                <option value="new">Primeira avaliação</option>
+                                                                <option value="renovation">Acompanhamento</option>
+                                                                <option value="replacement">Sessão avulsa</option>
+                                                                <option value="commercial">Pacote de sessões</option>
                                                             </select>
                                                         </div>
 
                                                         <div>
-                                                            <label className={labelClass}>Tipo de porta *</label>
+                                                            <label className={labelClass}>Especialidade *</label>
                                                             <select
                                                                 name="doorType"
                                                                 value={formData.doorType}
@@ -254,24 +254,24 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                                                                 required
                                                             >
                                                                 <option value="">Selecione...</option>
-                                                                <option value="entrance">Porta de entrada</option>
-                                                                <option value="interior">Portas internas</option>
-                                                                <option value="pivotante">Porta pivotante</option>
-                                                                <option value="sliding">Porta de correr</option>
-                                                                <option value="acoustic">Porta acústica</option>
+                                                                <option value="entrance">Fisioterapia Ortopédica</option>
+                                                                <option value="interior">Fisioterapia Facial</option>
+                                                                <option value="pivotante">Medicina Chinesa</option>
+                                                                <option value="sliding">Acupuntura</option>
+                                                                <option value="acoustic">Liberação Miofascial</option>
                                                                 <option value="other">Outro / Não sei</option>
                                                             </select>
                                                         </div>
 
                                                         <div>
-                                                            <label className={labelClass}>Quantidade aproximada</label>
+                                                            <label className={labelClass}>Idade do paciente</label>
                                                             <input
                                                                 type="number"
                                                                 name="quantity"
                                                                 value={formData.quantity}
                                                                 onChange={handleChange}
                                                                 className={inputClass}
-                                                                placeholder="1"
+                                                                placeholder="Sua idade"
                                                                 min="1"
                                                             />
                                                         </div>
@@ -293,14 +293,14 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
 
                                                         <div>
                                                             <label className={labelClass}>
-                                                                Conte mais sobre seu projeto (opcional)
+                                                                Conte mais sobre seu caso (opcional)
                                                             </label>
                                                             <textarea
                                                                 name="message"
                                                                 value={formData.message}
                                                                 onChange={handleChange}
                                                                 className={`${inputClass} min-h-[120px] resize-none`}
-                                                                placeholder="Medidas, acabamentos desejados, dúvidas específicas..."
+                                                                placeholder="Sintomas, dores, dúvidas específicas..."
                                                             />
                                                         </div>
 
@@ -339,7 +339,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                                                         className="flex items-center gap-2 px-6 py-3 bg-brand-primary text-white rounded-full font-medium hover:bg-brand-dark transition-all duration-300"
                                                     >
                                                         <Send className="w-4 h-4" />
-                                                        Enviar Orçamento
+                                                        Enviar Solicitação
                                                     </button>
                                                 )}
                                             </div>
@@ -357,7 +357,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                                         </div>
 
                                         <h4 className="font-serif text-2xl text-gray-900 mb-4">
-                                            Orçamento Enviado!
+                                            Solicitação Enviada!
                                         </h4>
 
                                         <p className="text-gray-600 mb-8">

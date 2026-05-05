@@ -1,75 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
-import { WHATSAPP_LINK } from '../constants';
-
-interface FAQItem {
-    id: number;
-    question: string;
-    answer: string;
-}
-
-const FAQ_ITEMS: FAQItem[] = [
-    {
-        id: 1,
-        question: 'O que é um kit porta?',
-        answer:
-            'O kit porta pronta é um conjunto completo que chega à obra pronto para instalação, proporcionando praticidade, rapidez e excelente acabamento, sem a necessidade de ajustes complexos.',
-    },
-    {
-        id: 2,
-        question: 'A SOROPORTAS trabalha com portas para acabamento?',
-        answer:
-            'Nossos produtos já são entregues prontos e acabados, eliminando a necessidade de pintura e reduzindo tempo e custo na obra.',
-    },
-    {
-        id: 3,
-        question: 'A SOROPORTAS possui portas maciças?',
-        answer:
-            'Sim! Trabalhamos com três tipos de preenchimento — colmeia, sólida e sarrafeada — para atender diferentes necessidades de resistência e custo-benefício.',
-    },
-    {
-        id: 4,
-        question: 'Qual material a SOROPORTAS utiliza?',
-        answer: 'Utilizamos MDF Ultra, garantindo alta qualidade, durabilidade e excelente padrão de acabamento.',
-    },
-    {
-        id: 5,
-        question: 'Quais cores de portas a SOROPORTAS oferece?',
-        answer: 'Disponibilizamos um leque completo com 15 opções de cores, ideais para diversos estilos de ambientes.',
-    },
-    {
-        id: 6,
-        question: 'A SOROPORTAS trabalha com rodapés?',
-        answer: 'Sim! Oferecemos rodapés em MDF Ultra e Poliestireno, unindo resistência, estética e fácil manutenção.',
-    },
-    {
-        id: 7,
-        question: 'Qual marca de portas a SOROPORTAS trabalha?',
-        answer:
-            'Somos uma loja multimarcas, atuando atualmente com ênfase na marca Concrem, referência em qualidade, durabilidade e confiabilidade no mercado.',
-    },
-    {
-        id: 8,
-        question: 'A SOROPORTAS possui produtos à pronta entrega?',
-        answer:
-            'Sim! Mantemos estoque de kit porta branca à pronta entrega, garantindo agilidade no atendimento e na obra.',
-    },
-    {
-        id: 9,
-        question: 'A SOROPORTAS realiza a instalação das portas?',
-        answer: 'Sim! Contamos com equipe especializada para oferecer o serviço',
-    },
-];
+import { WHATSAPP_LINK, FAQ_ITEMS } from '../constants';
 
 const FAQ: React.FC = () => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: '-10%' });
-    const [openItems, setOpenItems] = useState<number[]>([1]);
+    const [openItems, setOpenItems] = useState<number[]>([0]);
 
-    const toggleItem = (id: number) => {
+    const toggleItem = (index: number) => {
         setOpenItems((prev) =>
-            prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+            prev.includes(index) ? prev.filter((item) => item !== index) : [...prev, index]
         );
     };
 
@@ -128,25 +69,25 @@ const FAQ: React.FC = () => {
                     >
                         {FAQ_ITEMS.map((item, index) => (
                             <motion.div
-                                key={item.id}
+                                key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
                                 className="border border-gray-200 rounded-xl overflow-hidden hover:border-brand-primary/30 transition-colors duration-300"
                             >
                                 <button
-                                    onClick={() => toggleItem(item.id)}
+                                    onClick={() => toggleItem(index)}
                                     className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-gray-50 transition-colors"
                                 >
                                     <span className="font-semibold text-gray-900 pr-4">{item.question}</span>
                                     <span
                                         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                                            openItems.includes(item.id)
+                                            openItems.includes(index)
                                                 ? 'bg-brand-primary text-white rotate-0'
                                                 : 'bg-gray-100 text-gray-600'
                                         }`}
                                     >
-                                        {openItems.includes(item.id) ? (
+                                        {openItems.includes(index) ? (
                                             <Minus className="w-4 h-4" />
                                         ) : (
                                             <Plus className="w-4 h-4" />
@@ -155,7 +96,7 @@ const FAQ: React.FC = () => {
                                 </button>
 
                                 <AnimatePresence>
-                                    {openItems.includes(item.id) && (
+                                    {openItems.includes(index) && (
                                         <motion.div
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: 'auto', opacity: 1 }}

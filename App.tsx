@@ -10,6 +10,7 @@ import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CollectionDetailPage from './pages/CollectionDetailPage';
+import ProductsPage from './pages/ProductsPage';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route path="sobre-nos" element={<AboutPage />} />
           <Route path="servicos" element={<ServicesPage />} />
           <Route path="projetos" element={<ProjectsPage />} />
+          <Route path="produtos" element={<ProductsPage />} />
           <Route path="contato" element={<ContactPage />} />
           <Route path="colecoes/:slug" element={<CollectionDetailPage />} />
           <Route path="politica-de-privacidade" element={<PrivacyPage />} />

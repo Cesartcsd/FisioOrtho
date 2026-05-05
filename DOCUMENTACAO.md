@@ -1,46 +1,46 @@
-# Documentacao do Projeto - Soroportas
+# Documentação do Projeto - FisioOrthopédicos
 
-> Ultima atualizacao: 10/02/2026
+> Última atualização: 05/05/2026
 
 ---
 
-## 1) Visao Geral
+## 1) Visão Geral
 
-O **Soroportas** e um site institucional em React para captacao de leads via WhatsApp e apresentacao de produtos premium.
+A **FisioOrthopédicos** é um site institucional em React voltado para uma clínica especializada em fisioterapia ortopédica, reabilitação facial, medicina chinesa, e para a apresentação/venda/locação de um extenso catálogo de produtos ortopédicos. O objetivo principal é a captação de pacientes e vendas via WhatsApp.
 
 Estado atual do projeto:
 
-- Arquitetura multipagina.
-- Rotas publicas com pre-render estatico.
-- SEO tecnico por rota (meta tags, canonical, OG, Twitter e JSON-LD).
-- Midias locais em `public/assets` com `srcset` WebP.
-- Paginas dedicadas por colecao com filtro por cor (fase pre-upload de fotos).
+- Arquitetura multipágina (SPA com React Router).
+- Rotas públicas com pré-renderização estática (SEO-friendly).
+- SEO técnico por rota (meta tags, canonical, OG, Twitter e JSON-LD otimizado para `MedicalClinic`).
+- Catálogo em tempo real com filtros integrados e redirecionamento de intenção de compra via WhatsApp.
+- Páginas dedicadas por especialidade médica listando os tratamentos.
 
 ---
 
-## 2) Stack Tecnologica
+## 2) Stack Tecnológica
 
-| Tecnologia | Versao | Funcao |
+| Tecnologia | Versão | Função |
 |---|---:|---|
 | React | ^19.2.3 | UI |
 | React DOM | ^19.2.3 | Render no browser |
-| TypeScript | ~5.8.2 | Tipagem estatica |
+| TypeScript | ~5.8.2 | Tipagem estática |
 | Vite | ^6.2.0 | Dev server e build |
-| React Router DOM | ^7.13.0 | Roteamento multipagina |
-| SEO Head nativo | interno | SEO tags por rota sem dependencia externa |
-| Framer Motion | 11.16.0 | Animacoes |
-| Lucide React | ^0.562.0 | Icones |
-| Tailwind CSS | ^3.4.1 | Estilizacao |
+| React Router DOM | ^7.13.0 | Roteamento multipágina |
+| SEO Head nativo | interno | SEO tags por rota sem dependência externa |
+| Framer Motion | 11.16.0 | Animações |
+| Lucide React | ^0.562.0 | Ícones |
+| Tailwind CSS | ^3.4.1 | Estilização |
 | PostCSS + Autoprefixer | ^8.4.31 / ^10.4.16 | Pipeline CSS |
-| vite-plugin-prerender | ^1.0.8 | Pre-render em producao |
-| sharp | ^0.34.5 | Apoio para otimizacao de imagens |
+| vite-plugin-prerender | ^1.0.8 | Pré-render em produção |
+| sharp | ^0.34.5 | Apoio para otimização de imagens |
 
 ---
 
 ## 3) Estrutura de Arquivos (Atual)
 
 ```text
-soroportas---portas-de-alto-padr-o/
+fisioorthopedicos/
 |-- App.tsx
 |-- index.tsx
 |-- index.css
@@ -57,6 +57,7 @@ soroportas---portas-de-alto-padr-o/
 |   |-- HomePage.tsx
 |   |-- AboutPage.tsx
 |   |-- ServicesPage.tsx
+|   |-- ProductsPage.tsx
 |   |-- ProjectsPage.tsx
 |   |-- ContactPage.tsx
 |   |-- CollectionDetailPage.tsx
@@ -88,36 +89,38 @@ soroportas---portas-de-alto-padr-o/
         |-- brand/
         |-- hero/
         |-- collections/
+        |-- products/
         `-- gallery/
 ```
 
 ---
 
-## 4) Rotas Publicas
+## 4) Rotas Públicas
 
 Configuradas em `App.tsx`:
 
-| Rota | Pagina |
+| Rota | Página |
 |---|---|
 | `/` | HomePage |
 | `/sobre-nos` | AboutPage |
 | `/servicos` | ServicesPage |
+| `/produtos` | ProductsPage |
 | `/projetos` | ProjectsPage |
 | `/contato` | ContactPage |
-| `/colecoes/:slug` | CollectionDetailPage |
+| `/colecoes/:slug` | CollectionDetailPage (Especialidades) |
 | `/politica-de-privacidade` | PrivacyPage |
 | `/termos-de-uso` | TermsPage |
 | `*` | NotFoundPage |
 
-Slugs atualmente publicados:
+Slugs atualmente publicados de Especialidades:
 
-- `/colecoes/entrada-principal`
-- `/colecoes/linha-lacca-touch`
-- `/colecoes/linha-amadeirada`
+- `/colecoes/fisioterapia-ortopedica`
+- `/colecoes/fisioterapia-facial`
+- `/colecoes/medicina-chinesa`
 
 ---
 
-## 5) Arquitetura de Renderizacao
+## 5) Arquitetura de Renderização
 
 Fluxo atual:
 
@@ -126,21 +129,21 @@ index.tsx
   -> App (BrowserRouter)
     -> SiteLayout
       -> Navbar
-      -> Outlet (pagina atual)
+      -> Outlet (página atual)
       -> Footer
       -> WhatsAppButton
-      -> QuoteModal
+      -> QuoteModal (Agendamento)
 ```
 
 Detalhes importantes:
 
 - `SiteLayout.tsx` dispara `prerender-ready` a cada troca de rota para suportar o `vite-plugin-prerender`.
-- Navegacao interna combina `Link` (rotas) e ancora para secoes da home (`#collections`, `#features`, `#faq`).
-- Em `Collections.tsx`, a foto e o link "Saiba mais" levam para a rota da colecao.
+- Navegação interna combina `Link` (rotas) e âncora para seções da home (`#collections`, `#features`, `#faq`).
+- Em `Collections.tsx`, os cartões levam para a página detalhada da respectiva Especialidade.
 
 ---
 
-## 6) SEO Tecnico (Implementado)
+## 6) SEO Técnico (Implementado)
 
 ### 6.1 Mapa central de SEO
 
@@ -149,10 +152,10 @@ Arquivo: `seo/routeSeo.ts`
 - Define SEO por rota via `ROUTE_SEO`.
 - Define `PRERENDER_ROUTES`.
 - Define `SITEMAP_ENTRIES`.
-- Define `CONTACT_NAP` para consistencia de dados institucionais.
-- Exponibiliza `getCollectionSeoBySlug(slug)` para rotas de colecao.
+- Define `CONTACT_NAP` para consistência de dados da clínica.
+- Exponibiliza `getCollectionSeoBySlug(slug)` para rotas de especialidades.
 
-### 6.2 Tags SEO por pagina
+### 6.2 Tags SEO por página
 
 Arquivo: `components/seo/SeoHead.tsx`
 
@@ -166,18 +169,18 @@ Arquivo: `components/seo/SeoHead.tsx`
 ### 6.3 Schemas JSON-LD usados
 
 - `Organization`
-- `HomeAndConstructionBusiness` (LocalBusiness)
+- `MedicalClinic` (LocalBusiness)
 - `WebSite`
-- `BreadcrumbList` (paginas internas e paginas de colecao)
+- `BreadcrumbList` (páginas internas e especialidades)
 
 ### 6.4 Robots e Sitemap
 
-- `public/robots.txt`: libera rastreio e aponta para sitemap canonico.
-- `public/sitemap.xml`: inclui todas as rotas publicas, incluindo as 3 paginas de colecao.
+- `public/robots.txt`: libera rastreio e aponta para sitemap canônico.
+- `public/sitemap.xml`: inclui todas as rotas públicas (incluindo as rotas de produtos e especialidades).
 
-### 6.5 Dominio canonico
+### 6.5 Domínio canônico
 
-- `https://www.soroportas.com`
+- `https://www.fisioorthopedicos.com.br`
 
 ---
 
@@ -185,69 +188,72 @@ Arquivo: `components/seo/SeoHead.tsx`
 
 ### Estrutura principal
 
-- `Navbar`: menu desktop/mobile, links de paginas e secoes.
-- `Footer`: navegacao, contato (NAP) e links legais.
+- `Navbar`: menu desktop/mobile, links de páginas e catálogo.
+- `Footer`: navegação, contato (NAP) e links legais.
 - `WhatsAppButton`: CTA flutuante global.
-- `QuoteModal`: formulario multi-etapas de orcamento.
+- `QuoteModal`: Formulário de agendamento de consultas ou serviços.
 - `CustomCursor`: cursor customizado para dispositivos com hover.
 
 ### Home (`HomePage.tsx`)
 
-Ordem de secoes:
+Ordem de seções:
 
-1. `Hero`
-2. `Collections`
-3. `Features`
-4. `Process`
-5. `Gallery` (com `Lightbox`)
-6. `Testimonials`
-7. `FAQ`
+1. `Hero` (Apresentação da Dra. e Clínica)
+2. `Collections` (Especialidades Médicas)
+3. `Features` (Diferenciais de Atendimento)
+4. `Process` (Fluxo de Tratamento e Recuperação)
+5. `Gallery` (Nosso Espaço com `Lightbox`)
+6. `Testimonials` (Pacientes)
+7. `FAQ` (Dúvidas frequentes sobre as sessões)
 
-### Detalhe de colecao (`CollectionDetailPage.tsx`)
+### Catálogo de Produtos (`ProductsPage.tsx`)
+
+- Exibição em Grid responsivo do array de `PRODUCTS`.
+- Filtros por categoria (Mobilidade, Órteses, etc).
+- CTA inteligente que envia o nome do produto selecionado diretamente para o WhatsApp da Clínica.
+
+### Detalhe de Especialidade (`CollectionDetailPage.tsx`)
 
 - Leitura de `slug` via `useParams`.
-- Busca da colecao correspondente em `COLLECTIONS`.
-- Filtro por cor com estado ativo.
-- Galeria por cor (nesta fase com `images: []`, exibindo estado vazio).
-- CTA de WhatsApp para conversao.
+- Busca da especialidade correspondente em `COLLECTIONS`.
+- Filtro por modalidades/tratamentos com estado ativo.
+- Galeria de fotos associadas a cada tratamento.
 
 ---
 
-## 8) Conteudo Centralizado
+## 8) Conteúdo Centralizado
 
 Arquivo: `constants.ts`
 
-- Dados da marca (`BRAND_NAME`, `SITE_URL`).
-- Contato/NAP (`CONTACT_PHONE_*`, `CONTACT_EMAIL`, cidade/estado, endereco).
+- Dados da clínica (`BRAND_NAME`, `SITE_URL`).
+- Contato/NAP (`CONTACT_PHONE_*`, `CONTACT_EMAIL`, endereço físico do consultório).
 - `WHATSAPP_LINK`.
-- Logos da marca.
-- Midias e responsividade de imagens (`HERO_IMAGES`, `COLLECTIONS`, `GALLERY_ITEMS`).
-- Conteudo comercial (`HERO_CONTENT`, `FEATURES`, `PROJECT_STATS`).
+- Catálogo de `PRODUCTS` contendo 39 equipamentos.
+- Arrays de conteúdo (`FAQ_ITEMS`, `TESTIMONIALS`, `FEATURES`).
+- Mídias e responsividade de imagens.
 
-Contrato de colecoes:
+Contrato de Especialidades:
 
-- `COLLECTIONS` agora inclui `slug` e `colors`.
-- Cada cor possui `id`, `name` e `images`.
-- `images` foi iniciado vazio na fase pre-upload e sera preenchido quando os arquivos forem enviados.
+- `COLLECTIONS` inclui `slug` e `colors` (utilizado semanticamente como modalidades de tratamento).
+- Cada modalidade (cor) possui `id`, `name` e `images`.
 
 Arquivo: `types.ts`
 
-- Tipos de dados de UI (`CollectionItem`, `FeatureItem`, etc.).
-- Novos tipos: `CollectionColorOption`, `CollectionColorImage`.
+- Tipos de dados de UI (`ProductItem`, `FAQItem`, etc.).
 - Contrato SEO por rota (`RouteSEO`).
 
 ---
 
-## 9) Midia e Performance
+## 9) Mídia e Performance
 
-Implementacoes atuais:
+Implementações atuais:
 
 - Imagens locais em `public/assets`.
-- Uso de `srcSet` WebP + `sizes` em Hero, Collections e Gallery.
+- Uso de `srcSet` WebP + `sizes` para responsividade ideal.
 - Hero com `fetchPriority="high"` e `loading="eager"`.
 - Imagens fora da dobra com `loading="lazy"`.
 
-Padrao de variantes WebP:
+Padrão de variantes WebP:
 
 - `-480.webp`
 - `-768.webp`
@@ -258,7 +264,7 @@ Guia operacional: `docs/GERENCIAMENTO_DE_IMAGENS.md`.
 
 ---
 
-## 10) Build, Preview e Execucao
+## 10) Build, Preview e Execução
 
 Comandos:
 
@@ -269,11 +275,6 @@ npm run build
 npm run preview
 ```
 
-Observacoes:
-
-- Atualmente nao ha dependencia funcional de API externa para o front-end.
-- `GEMINI_API_KEY` ainda aparece em `vite.config.ts`, mas nao e consumida por codigo de interface neste estado do projeto.
-
 ---
 
 ## 11) Deploy (Vercel)
@@ -282,21 +283,20 @@ Arquivo: `vercel.json`
 
 - Build com `npm run build`.
 - Output em `dist`.
-- Fallback para `index.html` (SPA) para suportar navegacao direta em rotas.
+- Fallback para `index.html` (SPA) para suportar navegação direta em rotas.
 
-Com o pre-render ativo em producao (`vite.config.ts`):
+Com o pré-render ativo em produção (`vite.config.ts`):
 
-- As rotas de `PRERENDER_ROUTES` geram HTML estatico para melhorar indexacao.
+- As rotas de `PRERENDER_ROUTES` geram HTML estático para melhorar indexação.
 
 ---
 
-## 12) Checklist de Manutencao da Documentacao
+## 12) Checklist de Manutenção da Documentação
 
-Sempre atualizar esta documentacao quando houver alteracao em:
+Sempre atualizar esta documentação quando houver alteração em:
 
 - Rotas de `App.tsx`.
 - SEO central em `seo/routeSeo.ts`.
 - Estrutura de imagens em `public/assets`.
 - Contratos de `constants.ts` e `types.ts`.
 - Config de build/deploy (`vite.config.ts`, `vercel.json`, `robots.txt`, `sitemap.xml`).
-

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import SeoHead from '../components/seo/SeoHead';
 import { COLLECTIONS, FEATURES, WHATSAPP_LINK } from '../constants';
@@ -11,10 +11,8 @@ const ServicesPage: React.FC = () => {
       <section className="pt-36 pb-24 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
           <h1 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">Serviços e soluções</h1>
-          <p className="text-gray-700 text-lg leading-relaxed mb-12 max-w-3xl">
-            Oferecemos consultoria técnica, portas sob medida, instalação profissional e acabamento premium para
-            projetos residenciais e corporativos.
-          </p>
+            Oferecemos fisioterapia especializada, técnicas de alívio da dor, medicina integrativa e cuidado humanizado para
+            sua completa recuperação. Conheça nossas áreas de especialidade.
 
           <div className="grid md:grid-cols-3 gap-6 mb-14">
             {COLLECTIONS.map((item) => (
@@ -50,7 +48,7 @@ const ServicesPage: React.FC = () => {
           <div className="rounded-2xl border border-brand-primary/20 bg-brand-light/40 p-8">
             <h2 className="font-serif text-2xl text-gray-900 mb-3">Precisa de orientação técnica?</h2>
             <p className="text-gray-700 mb-5">
-              Fale com nossa equipe para definir medidas, ferragens, acabamento e cronograma de instalação.
+              Fale com a nossa equipe para tirar suas dúvidas, conhecer nossos protocolos e agendar sua avaliação.
             </p>
             <div className="flex flex-wrap gap-3">
               <a

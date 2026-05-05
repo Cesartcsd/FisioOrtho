@@ -2,50 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
-interface Testimonial {
-    id: number;
-    text: string;
-    author: string;
-    role: string;
-    location: string;
-    rating: number;
-    image?: string;
-}
-
-const TESTIMONIALS: Testimonial[] = [
-    {
-        id: 1,
-        text: "A qualidade das portas Soroportas é incomparável. O acabamento é perfeito e o isolamento acústico transformou completamente o conforto da minha casa. Recomendo sem hesitação.",
-        author: "Marcela Rodrigues",
-        role: "Arquiteta",
-        location: "São Paulo, SP",
-        rating: 5,
-    },
-    {
-        id: 2,
-        text: "Trabalho com alto padrão há 20 anos e a Soroportas é minha parceira de confiança. Nunca tive problemas com prazos ou qualidade. A curadoria técnica deles evitou vários erros no meu projeto.",
-        author: "Ricardo Mendes",
-        role: "Designer de Interiores",
-        location: "Rio de Janeiro, RJ",
-        rating: 5,
-    },
-    {
-        id: 3,
-        text: "Minha porta pivotante é o destaque da fachada. Todos os visitantes comentam. O atendimento foi excepcional do início ao fim. Vale cada centavo investido.",
-        author: "Fernanda Costa",
-        role: "Proprietária",
-        location: "Curitiba, PR",
-        rating: 5,
-    },
-    {
-        id: 4,
-        text: "Reformei toda a casa e escolhi Soroportas para todas as portas internas. O silêncio que consegui nos quartos é impressionante. Qualidade que se percebe no dia a dia.",
-        author: "Carlos Eduardo",
-        role: "Empresário",
-        location: "Belo Horizonte, MG",
-        rating: 5,
-    },
-];
+import { TESTIMONIALS } from '../constants';
 
 const Testimonials: React.FC = () => {
     const sectionRef = useRef(null);
@@ -121,7 +78,7 @@ const Testimonials: React.FC = () => {
                             >
                                 {/* Stars */}
                                 <div className="flex justify-center gap-1 mb-6">
-                                    {[...Array(currentTestimonial.rating)].map((_, i) => (
+                                    {[...Array(currentTestimonial.rating || 5)].map((_, i) => (
                                         <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                                     ))}
                                 </div>
@@ -137,7 +94,7 @@ const Testimonials: React.FC = () => {
                                         {currentTestimonial.author.split(' ').map(n => n[0]).join('')}
                                     </div>
                                     <p className="font-bold text-gray-900">{currentTestimonial.author}</p>
-                                    <p className="text-brand-primary text-sm">{currentTestimonial.role}</p>
+                                    {currentTestimonial.role && <p className="text-brand-primary text-sm">{currentTestimonial.role}</p>}
                                     <p className="text-gray-500 text-sm">{currentTestimonial.location}</p>
                                 </div>
                             </motion.div>
@@ -193,7 +150,7 @@ const Testimonials: React.FC = () => {
                     </div>
                     <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
                     <div className="text-gray-500">
-                        <span className="font-semibold text-gray-900">500+</span> clientes satisfeitos
+                        <span className="font-semibold text-gray-900">5.000+</span> clientes satisfeitos
                     </div>
                     <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
                     <div className="text-gray-500">

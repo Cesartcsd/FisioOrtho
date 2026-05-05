@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { HERO_CONTENT, WHATSAPP_LINK, HERO_IMAGES } from '../constants';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -117,7 +117,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             variants={itemVariants}
             className="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-semibold leading-[1.1] mb-8"
           >
-            <span className="block">A porta certa</span>
+            <span className="block">O cuidado ideal</span>
             <span className="block mt-2 bg-gradient-to-r from-white via-gray-100 to-white/80 bg-clip-text text-transparent">
               muda o ambiente inteiro.
             </span>

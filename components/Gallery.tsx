@@ -94,7 +94,7 @@ const Gallery: React.FC = () => {
               </h2>
 
               <p className="text-gray-600 text-lg leading-relaxed">
-                Veja como nossas portas se comportam em projetos reais de arquitetura, com foco em acabamento e proporção.
+                Veja as instalações da nossa clínica e como proporcionamos o melhor ambiente para sua recuperação.
               </p>
             </motion.div>
 

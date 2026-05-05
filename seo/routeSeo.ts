@@ -8,10 +8,11 @@ import {
   CONTACT_PHONE_E164,
   CONTACT_STATE,
   SITE_URL,
+  PRODUCTS,
 } from '../constants';
 import { RouteSEO } from '../types';
 
-const logoUrl = `${SITE_URL}/assets/brand/soroportas-mark-default.png`;
+const logoUrl = `${SITE_URL}/assets/brand/fisioortho-logo.png`;
 const defaultImageUrl = `${SITE_URL}/assets/hero/hero-main-1280.webp`;
 const entranceCollectionImageUrl = `${SITE_URL}/assets/collections/entrada-principal-768.webp`;
 const laccaCollectionImageUrl = `${SITE_URL}/assets/collections/interiores-768.webp`;
@@ -52,7 +53,7 @@ const organizationSchema = {
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'HomeAndConstructionBusiness',
+  '@type': 'MedicalClinic',
   name: BRAND_NAME,
   image: defaultImageUrl,
   url: SITE_URL,
@@ -79,25 +80,62 @@ const webSiteSchema = {
   inLanguage: 'pt-BR',
 };
 
+const physiotherapistSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Physiotherapist',
+  name: 'Dra. Jéssica Arantes',
+  url: `${SITE_URL}/sobre-nos`,
+  worksFor: {
+    '@type': 'MedicalClinic',
+    name: BRAND_NAME,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: CONTACT_ADDRESS,
+    addressLocality: CONTACT_CITY,
+    addressRegion: CONTACT_STATE,
+    addressCountry: CONTACT_COUNTRY,
+  },
+};
+
+const productListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Catálogo de Produtos Ortopédicos',
+  description: 'Equipamentos e acessórios ortopédicos para venda e locação.',
+  itemListElement: PRODUCTS.slice(0, 10).map((product, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Product',
+      name: product.name,
+      description: product.description,
+      image: `${SITE_URL}${product.imageUrl}`,
+      category: product.category,
+    },
+  })),
+};
+
 export const ROUTE_SEO: Record<string, RouteSEO> = {
   home: {
-    title: 'Soroportas | Portas de alto padrão em Sorocaba e região',
+    title: 'FisioOrthopédicos | Excelência em Fisioterapia em Sorocaba',
     description:
-      'Portas de alto padrão com acabamento de precisão, consultoria técnica e instalação profissional em Sorocaba e região.',
+      'Clínica de fisioterapia ortopédica com atendimento especializado, estética avançada e reabilitação ortopédica em Sorocaba e região.',
     canonicalPath: '/',
     ogType: 'website',
     ogImage: defaultImageUrl,
     jsonLd: [organizationSchema, localBusinessSchema, webSiteSchema],
   },
   about: {
-    title: 'Sobre nós | Soroportas',
+    title: 'Sobre nós | FisioOrthopédicos',
     description:
-      'Conheça a história da Soroportas, nossa curadoria técnica e o processo artesanal de fabricação e instalação de portas premium.',
+      'Conheça a FisioOrthopédicos e o trabalho da Dra. Jéssica Arantes. Fisioterapia humanizada e resultados reais para sua saúde.',
     canonicalPath: '/sobre-nos',
     ogType: 'article',
     ogImage: defaultImageUrl,
     jsonLd: [
       organizationSchema,
+      physiotherapistSchema,
       buildBreadcrumbSchema([
         { name: 'Início', path: '/' },
         { name: 'Sobre nós', path: '/sobre-nos' },
@@ -105,9 +143,9 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
     ],
   },
   services: {
-    title: 'Serviços de portas premium | Soroportas',
+    title: 'Nossos Serviços | FisioOrthopédicos',
     description:
-      'Projetos sob medida, instalação profissional, isolamento acústico e curadoria técnica para portas de alto padrão.',
+      'Fisioterapia ortopédica, fisioterapia facial, medicina chinesa e reabilitação avançada para o seu bem-estar.',
     canonicalPath: '/servicos',
     ogType: 'article',
     ogImage: defaultImageUrl,
@@ -120,9 +158,9 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
     ],
   },
   projects: {
-    title: 'Projetos e portfólio | Soroportas',
+    title: 'Nosso Espaço | FisioOrthopédicos',
     description:
-      'Veja projetos reais da Soroportas com portas de alto padrão em ambientes residenciais e comerciais.',
+      'Conheça as instalações da FisioOrthopédicos. Um ambiente acolhedor e preparado para proporcionar a melhor reabilitação e bem-estar.',
     canonicalPath: '/projetos',
     ogType: 'article',
     ogImage: defaultImageUrl,
@@ -133,10 +171,26 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
       ]),
     ],
   },
-  contact: {
-    title: 'Contato | Soroportas',
+  products: {
+    title: 'Catálogo de Produtos | FisioOrthopédicos',
     description:
-      `Fale com a ${BRAND_NAME} por WhatsApp, telefone ou e-mail. Atendimento com hora marcada em ${CONTACT_CITY}-${CONTACT_STATE}.`,
+      'Catálogo completo de produtos ortopédicos para reabilitação: bengalas, muletas, andadores, palmilhas, órteses e muito mais.',
+    canonicalPath: '/produtos',
+    ogType: 'website',
+    ogImage: defaultImageUrl,
+    jsonLd: [
+      localBusinessSchema,
+      productListSchema,
+      buildBreadcrumbSchema([
+        { name: 'Início', path: '/' },
+        { name: 'Produtos', path: '/produtos' },
+      ]),
+    ],
+  },
+  contact: {
+    title: 'Contato | FisioOrthopédicos',
+    description:
+      `Agende sua avaliação na ${BRAND_NAME} por WhatsApp, telefone ou e-mail. Atendimento especializado em ${CONTACT_CITY}-${CONTACT_STATE}.`,
     canonicalPath: '/contato',
     ogType: 'article',
     ogImage: defaultImageUrl,
@@ -149,54 +203,54 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
     ],
   },
   collectionLaccaPet: {
-    title: 'Lacca Pet | Soroportas',
+    title: 'Fisioterapia Ortopédica | FisioOrthopédicos',
     description:
-      'Descubra a coleção Lacca Pet da Soroportas, com superfície ultra resistente e sustentável feita de garrafas PET recicladas.',
+      'Descubra nossos tratamentos focados em dores, reabilitação pós-cirúrgica e fortalecimento muscular avançado.',
     canonicalPath: '/colecoes/lacca-pet',
     ogType: 'article',
-    ogImage: laccaCollectionImageUrl, // Using existing or updated image variable if available, assuming re-use for now or update separately
+    ogImage: laccaCollectionImageUrl,
     jsonLd: [
       buildBreadcrumbSchema([
         { name: 'Início', path: '/' },
-        { name: 'Coleções', path: '/' },
-        { name: 'Lacca Pet', path: '/colecoes/lacca-pet' },
+        { name: 'Especialidades', path: '/' },
+        { name: 'Fisioterapia Ortopédica', path: '/colecoes/lacca-pet' },
       ]),
     ],
   },
   collectionLinhaLaccaTouch: {
-    title: 'Linha Lacca Touch | Soroportas',
+    title: 'Fisioterapia Facial | FisioOrthopédicos',
     description:
-      'Explore a Linha Lacca Touch da Soroportas com acabamento sofisticado e opcoes para ambientes internos.',
+      'Explore nossos serviços de estética e reabilitação facial com protocolos avançados para paralisia e cuidado dermatofuncional.',
     canonicalPath: '/colecoes/linha-lacca-touch',
     ogType: 'article',
     ogImage: laccaCollectionImageUrl,
     jsonLd: [
       buildBreadcrumbSchema([
         { name: 'Início', path: '/' },
-        { name: 'Coleções', path: '/' },
-        { name: 'Linha Lacca Touch', path: '/colecoes/linha-lacca-touch' },
+        { name: 'Especialidades', path: '/' },
+        { name: 'Fisioterapia Facial', path: '/colecoes/linha-lacca-touch' },
       ]),
     ],
   },
   collectionLinhaAmadeirada: {
-    title: 'Linha Amadeirada | Soroportas',
+    title: 'Medicina Chinesa | FisioOrthopédicos',
     description:
-      'Veja a Linha Amadeirada da Soroportas com padroes naturais e alto nivel de acabamento para projetos de destaque.',
+      'Conheça a abordagem da Medicina Chinesa em nossa clínica: Acupuntura, Auriculoterapia e tratamentos holísticos para sua saúde integral.',
     canonicalPath: '/colecoes/linha-amadeirada',
     ogType: 'article',
     ogImage: amadeiradaCollectionImageUrl,
     jsonLd: [
       buildBreadcrumbSchema([
         { name: 'Início', path: '/' },
-        { name: 'Coleções', path: '/' },
-        { name: 'Linha Amadeirada', path: '/colecoes/linha-amadeirada' },
+        { name: 'Especialidades', path: '/' },
+        { name: 'Medicina Chinesa', path: '/colecoes/linha-amadeirada' },
       ]),
     ],
   },
   privacy: {
-    title: 'Política de Privacidade | Soroportas',
+    title: 'Política de Privacidade | FisioOrthopédicos',
     description:
-      'Entenda como a Soroportas coleta, usa e protege dados pessoais conforme boas práticas de privacidade e LGPD.',
+      'Entenda como a FisioOrthopédicos coleta, usa e protege seus dados conforme boas práticas de privacidade e LGPD.',
     canonicalPath: '/politica-de-privacidade',
     ogType: 'article',
     ogImage: defaultImageUrl,
@@ -208,9 +262,9 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
     ],
   },
   terms: {
-    title: 'Termos de Uso | Soroportas',
+    title: 'Termos de Uso | FisioOrthopédicos',
     description:
-      'Consulte os termos de uso do site da Soroportas, regras de navegação e condições gerais de relacionamento digital.',
+      'Consulte os termos de uso do site da FisioOrthopédicos, regras de navegação e condições gerais de atendimento.',
     canonicalPath: '/termos-de-uso',
     ogType: 'article',
     ogImage: defaultImageUrl,
@@ -222,8 +276,8 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
     ],
   },
   notFound: {
-    title: 'Página não encontrada | Soroportas',
-    description: 'A página solicitada não foi encontrada. Volte para a página inicial da Soroportas.',
+    title: 'Página não encontrada | FisioOrthopédicos',
+    description: 'A página solicitada não foi encontrada. Volte para a página inicial da FisioOrthopédicos.',
     canonicalPath: '/404',
     robots: 'noindex,follow',
     ogType: 'website',
@@ -232,9 +286,9 @@ export const ROUTE_SEO: Record<string, RouteSEO> = {
 };
 
 const COLLECTION_SEO_BY_SLUG: Record<string, RouteSEO> = {
-  'lacca-pet': ROUTE_SEO.collectionLaccaPet,
-  'linha-lacca-touch': ROUTE_SEO.collectionLinhaLaccaTouch,
-  'linha-amadeirada': ROUTE_SEO.collectionLinhaAmadeirada,
+  'fisioterapia-ortopedica': ROUTE_SEO.collectionLaccaPet,
+  'fisioterapia-facial': ROUTE_SEO.collectionLinhaLaccaTouch,
+  'medicina-chinesa': ROUTE_SEO.collectionLinhaAmadeirada,
 };
 
 export const getCollectionSeoBySlug = (slug: string): RouteSEO | null => {
@@ -245,11 +299,12 @@ export const PRERENDER_ROUTES = [
   '/',
   '/sobre-nos',
   '/servicos',
+  '/produtos',
   '/projetos',
   '/contato',
-  '/colecoes/lacca-pet',
-  '/colecoes/linha-lacca-touch',
-  '/colecoes/linha-amadeirada',
+  '/colecoes/fisioterapia-ortopedica',
+  '/colecoes/fisioterapia-facial',
+  '/colecoes/medicina-chinesa',
   '/politica-de-privacidade',
   '/termos-de-uso',
 ];
@@ -258,11 +313,12 @@ export const SITEMAP_ENTRIES = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/sobre-nos', priority: '0.8', changefreq: 'monthly' },
   { path: '/servicos', priority: '0.9', changefreq: 'monthly' },
+  { path: '/produtos', priority: '0.9', changefreq: 'weekly' },
   { path: '/projetos', priority: '0.8', changefreq: 'weekly' },
   { path: '/contato', priority: '0.9', changefreq: 'monthly' },
-  { path: '/colecoes/lacca-pet', priority: '0.8', changefreq: 'monthly' },
-  { path: '/colecoes/linha-lacca-touch', priority: '0.8', changefreq: 'monthly' },
-  { path: '/colecoes/linha-amadeirada', priority: '0.8', changefreq: 'monthly' },
+  { path: '/colecoes/fisioterapia-ortopedica', priority: '0.8', changefreq: 'monthly' },
+  { path: '/colecoes/fisioterapia-facial', priority: '0.8', changefreq: 'monthly' },
+  { path: '/colecoes/medicina-chinesa', priority: '0.8', changefreq: 'monthly' },
   { path: '/politica-de-privacidade', priority: '0.3', changefreq: 'yearly' },
   { path: '/termos-de-uso', priority: '0.3', changefreq: 'yearly' },
 ];

@@ -27,8 +27,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 lg:col-span-1">
             <h2 className="font-serif text-2xl font-bold mb-6">{BRAND_NAME}</h2>
             <p className="text-gray-300 text-sm leading-relaxed mb-6">
-              Soluções premium em portas de madeira. Unimos marcenaria especializada e precisão técnica para entregar
-              confiança no resultado final.
+              Excelência em fisioterapia ortopédica e produtos para sua saúde. Atendimento personalizado com orientação profissional da Dra. Jéssica Arantes.
             </p>
           </div>
 
@@ -70,7 +69,7 @@ const Footer: React.FC = () => {
                 <Clock className="w-5 h-5 text-gray-400 mt-1" />
                 <div>
                   <p className="font-medium text-white mb-1">Horário</p>
-                  <p className="text-sm text-gray-300">Segunda a sexta-feira: 07:30 às 17:00</p>
+                  <p className="text-sm text-gray-300">Seg. a Sex.: 09:00 às 12:00 / 14:00 às 18:00</p>
                   <p className="text-sm text-gray-300">Sábado: 09:00 às 12:00</p>
                   <p className="text-sm text-gray-300">Domingo: Fechado</p>
                 </div>
@@ -114,7 +113,7 @@ const Footer: React.FC = () => {
                 href={sectionHref('#collections')}
                 className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-md font-medium hover:bg-white/10 transition-colors"
               >
-                Ver modelos
+                Ver especialidades
               </a>
             </div>
           </div>

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X, FileText } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { BRAND_NAME, WHATSAPP_LINK, BRAND_LOGOS } from '../constants';
@@ -28,12 +28,13 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
     { name: 'Início', href: '/' },
     { name: 'Sobre nós', href: '/sobre-nos' },
     { name: 'Serviços', href: '/servicos' },
-    { name: 'Projetos', href: '/projetos' },
+    { name: 'Produtos', href: '/produtos' },
+    { name: 'Nosso Espaço', href: '/projetos' },
     { name: 'Contato', href: '/contato' },
   ];
 
   const sectionLinks = [
-    { name: 'Modelos', href: '#collections' },
+    { name: 'Especialidades', href: '#collections' },
     { name: 'Diferenciais', href: '#features' },
     { name: 'FAQ', href: '#faq' },
   ];
@@ -67,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
           {shouldShowLogo && (
             <img
               src={isScrolled ? BRAND_LOGOS.default : BRAND_LOGOS.light}
-              alt="Simbolo Soroportas"
+              alt="Logo FisioOrthopédicos"
               className="h-8 md:h-9 w-auto object-contain shrink-0"
               onError={() => {
                 if (isScrolled) {
@@ -102,7 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
               }`}
             >
               <FileText className="w-4 h-4" />
-              Orçamento
+              Agendamento
             </button>
           )}
 

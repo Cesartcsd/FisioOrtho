@@ -1,47 +1,48 @@
-# Soroportas
+# FisioOrthopédicos
 
-Site institucional da Soroportas com foco em captacao de leads via WhatsApp, paginas indexaveis e base tecnica de SEO on-page.
+Site institucional da clínica FisioOrthopédicos, com foco em captação de pacientes via WhatsApp, apresentação do catálogo de produtos ortopédicos e detalhes das especialidades. Desenvolvido com páginas indexáveis e base técnica de SEO on-page.
 
-## Sumario
+## Sumário
 
-- [Visao geral](#visao-geral)
+- [Visão geral](#visão-geral)
 - [Principais recursos](#principais-recursos)
-- [Stack tecnica](#stack-tecnica)
+- [Stack técnica](#stack-técnica)
 - [Estrutura do projeto](#estrutura-do-projeto)
-- [Pre-requisitos](#pre-requisitos)
+- [Pré-requisitos](#pré-requisitos)
 - [Como rodar localmente](#como-rodar-localmente)
-- [Scripts disponiveis](#scripts-disponiveis)
-- [Rotas publicas](#rotas-publicas)
-- [SEO e pre-render](#seo-e-pre-render)
-- [Conteudo e imagens](#conteudo-e-imagens)
+- [Scripts disponíveis](#scripts-disponíveis)
+- [Rotas públicas](#rotas-públicas)
+- [SEO e pré-render](#seo-e-pré-render)
+- [Conteúdo e imagens](#conteúdo-e-imagens)
 - [Deploy](#deploy)
 - [Troubleshooting](#troubleshooting)
-- [Documentacao relacionada](#documentacao-relacionada)
+- [Documentação relacionada](#documentação-relacionada)
 
-## Visao geral
+## Visão geral
 
-O projeto evoluiu de landing page unica para uma arquitetura multipagina com:
+O projeto conta com uma arquitetura multipágina dinâmica para clínicas com:
 
-- rotas publicas dedicadas;
+- rotas públicas dedicadas para tratamentos e catálogo de produtos;
 - metadados SEO por rota;
-- JSON-LD por contexto;
-- pre-render estatico em build de producao;
-- robots e sitemap canonicos.
+- JSON-LD para MedicalClinic, LocalBusiness e BreadcrumbList;
+- pré-render estático em build de produção;
+- robots e sitemap canônicos.
 
-Dominio canonico configurado:
+Domínio canônico configurado:
 
-- `https://www.soroportas.com`
+- `https://www.fisioorthopedicos.com.br`
 
 ## Principais recursos
 
-- Navegacao multipagina com `react-router-dom`.
+- Navegação multipágina com `react-router-dom`.
 - Head tags por rota com componente nativo `SeoHead`.
-- Schemas JSON-LD para Organization, LocalBusiness, WebSite e BreadcrumbList.
-- Pre-render das rotas publicas com `vite-plugin-prerender`.
-- Midias locais em `public/assets` com `srcset` WebP e `sizes`.
-- CTA de conversao via WhatsApp em pontos chave da interface.
+- Schemas JSON-LD para SEO local e estrutura médica.
+- Catálogo completo de equipamentos com filtros de categoria integrados à UI.
+- Pré-render das rotas públicas com `vite-plugin-prerender`.
+- Mídias locais em `public/assets` com `srcset` WebP e `sizes`.
+- CTA de conversão via WhatsApp em pontos chave da interface (inclusive em cada produto do catálogo).
 
-## Stack tecnica
+## Stack técnica
 
 - `react` + `react-dom`
 - `typescript`
@@ -66,6 +67,7 @@ Dominio canonico configurado:
 |   |-- HomePage.tsx
 |   |-- AboutPage.tsx
 |   |-- ServicesPage.tsx
+|   |-- ProductsPage.tsx
 |   |-- ProjectsPage.tsx
 |   |-- ContactPage.tsx
 |   |-- CollectionDetailPage.tsx
@@ -85,15 +87,15 @@ Dominio canonico configurado:
     `-- GERENCIAMENTO_DE_IMAGENS.md
 ```
 
-## Pre-requisitos
+## Pré-requisitos
 
 - Node.js 18+ (recomendado 20+)
 - npm
-- Google Chrome instalado (para pre-render em build de producao no ambiente atual Windows)
+- Google Chrome instalado (para pré-render em build de produção no ambiente atual Windows)
 
 ## Como rodar localmente
 
-1. Instale dependencias:
+1. Instale dependências:
 
 ```bash
 npm install
@@ -109,28 +111,25 @@ npm run dev
 
 - `http://localhost:3000`
 
-Observacao:
+## Scripts disponíveis
 
-- `GEMINI_API_KEY` aparece no `vite.config.ts`, mas atualmente nao existe dependencia funcional dessa chave no front-end deste projeto.
-
-## Scripts disponiveis
-
-| Script | Descricao |
+| Script | Descrição |
 |---|---|
 | `npm run dev` | Ambiente de desenvolvimento com Vite |
-| `npm run build` | Build de producao + pre-render das rotas publicas |
+| `npm run build` | Build de produção + pré-render das rotas públicas |
 | `npm run preview` | Preview local do build gerado em `dist/` |
 
-## Rotas publicas
+## Rotas públicas
 
 - `/`
 - `/sobre-nos`
 - `/servicos`
+- `/produtos`
 - `/projetos`
 - `/contato`
-- `/colecoes/entrada-principal`
-- `/colecoes/linha-lacca-touch`
-- `/colecoes/linha-amadeirada`
+- `/colecoes/fisioterapia-ortopedica`
+- `/colecoes/fisioterapia-facial`
+- `/colecoes/medicina-chinesa`
 - `/politica-de-privacidade`
 - `/termos-de-uso`
 
@@ -138,7 +137,7 @@ Fallback:
 
 - `*` -> `NotFoundPage`
 
-## SEO e pre-render
+## SEO e pré-render
 
 ### Camada SEO por rota
 
@@ -147,7 +146,7 @@ Arquivos principais:
 - `seo/routeSeo.ts`
 - `components/seo/SeoHead.tsx`
 
-Cada rota publica possui:
+Cada rota pública possui:
 
 - `title`
 - `description`
@@ -155,28 +154,28 @@ Cada rota publica possui:
 - Open Graph
 - Twitter Card
 - `robots`
-- JSON-LD (quando aplicavel)
+- JSON-LD (quando aplicável)
 
-### Pre-render
+### Pré-render
 
-O pre-render usa `vite-plugin-prerender` em modo producao (`vite.config.ts`) com as rotas de `PRERENDER_ROUTES`.
+O pré-render usa `vite-plugin-prerender` em modo produção (`vite.config.ts`) com as rotas de `PRERENDER_ROUTES`.
 
-No ambiente atual, o renderer esta configurado com:
+No ambiente atual, o renderer está configurado com:
 
 - `executablePath: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`
 
-Se o build falhar por Chrome nao encontrado, ajuste esse caminho no `vite.config.ts` para o executavel correto da maquina.
+Se o build falhar por Chrome não encontrado, ajuste esse caminho no `vite.config.ts` para o executável correto da máquina.
 
 ### Robots e Sitemap
 
 - `public/robots.txt`
 - `public/sitemap.xml`
 
-Ambos apontam para o dominio canonico `https://www.soroportas.com`.
+Ambos apontam para o domínio canônico `https://www.fisioorthopedicos.com.br`.
 
-## Conteudo e imagens
+## Conteúdo e imagens
 
-### Conteudo centralizado
+### Conteúdo centralizado
 
 Arquivo:
 
@@ -184,19 +183,20 @@ Arquivo:
 
 Inclui:
 
-- dados institucionais/NAP;
-- links de contato;
-- conteudo de secoes;
-- dados de colecoes com `slug`, lista de cores e imagens por cor;
-- referencias de imagens.
+- dados institucionais/NAP da clínica;
+- links de contato e WhatsApp;
+- conteúdo de seções (FAQ, Depoimentos, etc);
+- dados de especialidades (`COLLECTIONS`) com `slug` e modalidades;
+- catálogo de equipamentos médicos e acessórios (`PRODUCTS`);
+- referências de imagens.
 
-### Gestao de imagens
+### Gestão de imagens
 
-Padrao atual:
+Padrão atual:
 
 - imagens locais em `public/assets`
 - variantes WebP com sufixos `-480`, `-768`, `-1024`, `-1280`
-- `srcset` + `sizes` em Hero, Collections e Gallery
+- `srcset` + `sizes` em Hero, Especialidades e Galeria
 
 Guia operacional completo:
 
@@ -210,7 +210,7 @@ Arquivo:
 
 - `vercel.json`
 
-Configuracao atual:
+Configuração atual:
 
 - `buildCommand`: `npm run build`
 - `outputDirectory`: `dist`
@@ -220,27 +220,26 @@ Configuracao atual:
 
 ### Porta diferente no ambiente local
 
-O projeto usa `3000` em `vite.config.ts`. Se estiver ocupado, ajuste a porta na configuracao.
+O projeto usa `3000` em `vite.config.ts`. Se estiver ocupado, ajuste a porta na configuração.
 
-### Erro no build de pre-render
+### Erro no build de pré-render
 
-Causa comum: caminho do Chrome invalido no `vite.config.ts`.
+Causa comum: caminho do Chrome inválido no `vite.config.ts`.
 
-Solucao:
+Solução:
 
-- valide se o executavel existe;
-- ajuste `executablePath` para o caminho correto da maquina.
+- valide se o executável existe;
+- ajuste `executablePath` para o caminho correto da máquina.
 
-### Rotas abrindo 404 em producao
+### Rotas abrindo 404 em produção
 
 Verifique:
 
-- configuracao de fallback em `vercel.json`;
+- configuração de fallback em `vercel.json`;
 - build e deploy da pasta `dist`;
-- existencia dos arquivos pre-renderizados apos `npm run build`.
+- existência dos arquivos pré-renderizados após `npm run build`.
 
-## Documentacao relacionada
+## Documentação relacionada
 
 - `DOCUMENTACAO.md`
 - `docs/GERENCIAMENTO_DE_IMAGENS.md`
-

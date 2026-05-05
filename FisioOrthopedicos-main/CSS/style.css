@@ -1,0 +1,292 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+b,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    font: 20px Helvetica, Verdana;
+}
+
+
+#myCarousel {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    height: 70%;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+.navbar-brand {
+    margin-bottom: 50px;
+}
+
+.carousel-indicators {
+    margin: auto;
+}
+
+.carousel-subt {
+    font-size: 20px;
+    font-weight: bold;
+    -webkit-text-stroke-width: .3px;
+    -webkit-text-stroke-color: black;
+}
+
+.carousel-desc {
+    font-size: 14px;
+    -webkit-text-stroke-width: .2px;
+    -webkit-text-stroke-color: black;
+}
+
+.quem-somos {
+    margin-top: 3%;
+}
+
+.row{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.bio-img {
+    border-radius: 50%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3%;
+    width: 80%;
+}
+
+.bio {
+    margin-left: 5%;
+    margin-right: 5%;
+    direction: ltr;
+    text-align: justify;
+    line-height: 200%;
+}
+
+h3 {
+    font: 30px bold;
+    text-align: center;
+    padding-top: 1%;
+}
+
+h2{
+    font: 30px bold;
+    text-align: center;
+    padding: 2%;
+    border: 1px solid black;
+}
+
+h4 {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+.bg-footer {
+    background-color: black;
+    text-align: left;
+    color: white;
+    font: 15px Helvetica;
+    padding: 1%;
+    margin-top: 1%;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+li {
+    list-style-type: none;
+    font-size: 18px;
+}
+
+.suave-hyperlink {
+    color: white;
+    text-decoration: none;
+}
+
+.suave-hyperlink:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 30px;
+    border-radius: 40%;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-facebook:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.fa-linkedin:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+.fa-instagram {
+    background: #E46A3C;
+    color: white;
+}
+
+.fa-instagram:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+th {
+    font-weight: bold;
+}
+
+.serv-img{
+    width: 90%;
+    border-radius: 50%;
+}
+
+.toomuchtxt{
+    margin-bottom: 13px;
+}
+
+#id{
+    margin-top: 15%;
+}

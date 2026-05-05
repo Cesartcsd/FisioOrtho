@@ -37,6 +37,20 @@ export interface Testimonial {
   location: string;
 }
 
+export interface ProductItem {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  tag: string;
+  imageUrl: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface RouteSEO {
   title: string;
   description: string;

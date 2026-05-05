@@ -62,9 +62,9 @@ const Features: React.FC = () => {
           </span>
 
           <h2 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6 leading-tight">
-            Por que nossas portas são{' '}
+            Por que escolher a{' '}
             <span className="relative inline-block">
-              diferentes
+              FisioOrthopédicos
               <motion.span
                 className="absolute -bottom-2 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-primary via-brand-dark to-brand-primary"
                 initial={{ scaleX: 0 }}
@@ -76,7 +76,7 @@ const Features: React.FC = () => {
           </h2>
 
           <p className="text-gray-600 text-lg leading-relaxed">
-            Uma porta Soroportas não é apenas um item de fechamento. É um móvel de alto padrão construído para durar, funcionar em silêncio e impressionar.
+            O cuidado na FisioOrthopédicos não é apenas um tratamento. É uma experiência de reabilitação e saúde pensada para promover seu bem-estar com resultados reais e duradouros.
           </p>
         </motion.div>
 

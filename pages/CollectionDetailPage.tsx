@@ -55,7 +55,7 @@ const CollectionDetailPage: React.FC = () => {
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-10">
             <Link to="/#collections" className="text-sm text-brand-primary font-semibold hover:text-brand-dark transition-colors">
-              Voltar para colecoes
+              Voltar para especialidades
             </Link>
           </div>
 
@@ -90,7 +90,7 @@ const CollectionDetailPage: React.FC = () => {
           </div>
 
           <div className="mb-8">
-            <h2 className="font-serif text-2xl text-gray-900 mb-4">Selecione a cor</h2>
+            <h2 className="font-serif text-2xl text-gray-900 mb-4">Nossos Tratamentos</h2>
             <div className="flex flex-wrap gap-3">
               {collection.colors.map((color) => {
                 const isActive = color.id === activeColor?.id;
@@ -115,8 +115,8 @@ const CollectionDetailPage: React.FC = () => {
 
           <div className="rounded-2xl border border-gray-200 bg-white p-6">
             <div className="mb-4">
-              <h3 className="font-serif text-xl text-gray-900">Galeria da cor: {activeColor?.name}</h3>
-              <p className="text-sm text-gray-500 mt-1">Toque na cor para trocar o conjunto de imagens.</p>
+              <h3 className="font-serif text-xl text-gray-900">Galeria: {activeColor?.name}</h3>
+              <p className="text-sm text-gray-500 mt-1">Selecione um tratamento para visualizar fotos relacionadas.</p>
             </div>
 
             {hasImages && activeColor ? (
@@ -144,9 +144,9 @@ const CollectionDetailPage: React.FC = () => {
               </div>
             ) : (
               <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
-                <p className="text-gray-700 font-medium mb-2">Fotos desta cor serao adicionadas em breve.</p>
+                <p className="text-gray-700 font-medium mb-2">Fotos deste tratamento serão adicionadas em breve.</p>
                 <p className="text-sm text-gray-500">
-                  Cor selecionada: <span className="font-semibold text-gray-700">{activeColor?.name}</span>
+                  Tratamento selecionado: <span className="font-semibold text-gray-700">{activeColor?.name}</span>
                 </p>
               </div>
             )}

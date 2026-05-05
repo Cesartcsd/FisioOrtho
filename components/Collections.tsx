@@ -62,7 +62,7 @@ const Collections: React.FC = () => {
           <motion.div variants={headerVariants} className="mb-4">
             <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary tracking-widest uppercase">
               <span className="w-8 h-[2px] bg-brand-primary"></span>
-              Nossas Coleções
+              Nossas Especialidades
             </span>
           </motion.div>
 
@@ -70,24 +70,23 @@ const Collections: React.FC = () => {
             variants={headerVariants}
             className="font-serif text-4xl md:text-5xl text-gray-900 mb-6 leading-tight"
           >
-            Projetadas para cada{' '}
+            Cuidado especializado para sua{' '}
             <span className="relative inline-block">
-              momento
+              recuperação
               <motion.span
                 className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-brand-primary to-brand-dark"
                 initial={{ width: 0 }}
                 animate={isInView ? { width: '100%' } : { width: 0 }}
                 transition={{ delay: 0.8, duration: 0.6, ease: 'easeOut' }}
               />
-            </span>{' '}
-            da sua casa
+            </span>
           </motion.h2>
 
           <motion.p
             variants={headerVariants}
             className="text-gray-600 text-lg leading-relaxed"
           >
-            Não acreditamos em soluções genéricas. Navegue pelas nossas linhas e descubra qual perfil de porta se adequa à sua necessidade arquitetônica.
+            Não acreditamos em tratamentos genéricos. Navegue pelas nossas especialidades e descubra o cuidado ideal para sua necessidade.
           </motion.p>
         </motion.div>
 
@@ -184,7 +183,7 @@ const Collections: React.FC = () => {
           className="mt-20 text-center"
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-brand-light/50 to-transparent border border-brand-primary/10">
-            <p className="text-gray-600">Está em dúvida sobre qual modelo escolher?</p>
+            <p className="text-gray-600">Está em dúvida sobre qual tratamento é indicado?</p>
             <a
               href={WHATSAPP_LINK}
               target="_blank"

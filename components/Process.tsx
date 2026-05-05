@@ -14,37 +14,37 @@ const PROCESS_STEPS: ProcessStep[] = [
     {
         id: 1,
         icon: <MessageSquare className="w-6 h-6" />,
-        title: 'Consultoria Inicial',
-        description: 'Analisamos suas necessidades, planta e estilo arquitetônico para indicar a solução ideal.',
-        duration: '1-2 dias',
+        title: 'Avaliação Clínica',
+        description: 'Analisamos seu histórico, sintomas e necessidades para entender seu quadro clínico.',
+        duration: '1 sessão',
     },
     {
         id: 2,
         icon: <Ruler className="w-6 h-6" />,
-        title: 'Projeto Técnico',
-        description: 'Desenvolvemos o projeto com medidas precisas, especificações de materiais e acabamentos.',
-        duration: '3-5 dias',
+        title: 'Plano de Tratamento',
+        description: 'Desenvolvemos um protocolo personalizado com técnicas específicas para seu caso.',
+        duration: 'Imediato',
     },
     {
         id: 3,
         icon: <Factory className="w-6 h-6" />,
-        title: 'Fabricação Artesanal',
-        description: 'Produção em nossa fábrica com madeira nobre selecionada e controle de qualidade rigoroso.',
-        duration: '15-25 dias',
+        title: 'Início das Sessões',
+        description: 'Aplicação das terapias com foco no alívio da dor e reabilitação funcional.',
+        duration: 'Conforme plano',
     },
     {
         id: 4,
         icon: <Truck className="w-6 h-6" />,
-        title: 'Entrega Segura',
-        description: 'Transporte especializado com embalagem protetora para garantir a integridade do produto.',
-        duration: '1-3 dias',
+        title: 'Acompanhamento Contínuo',
+        description: 'Monitoramento da evolução e ajustes no protocolo conforme sua melhora.',
+        duration: 'Semanal',
     },
     {
         id: 5,
         icon: <Wrench className="w-6 h-6" />,
-        title: 'Instalação Profissional',
-        description: 'Equipe técnica certificada realiza a instalação com garantia de vedação e funcionamento perfeito.',
-        duration: '1 dia',
+        title: 'Alta e Manutenção',
+        description: 'Orientações preventivas e exercícios para garantir resultados duradouros.',
+        duration: 'Longo prazo',
     },
 ];
 
@@ -98,9 +98,9 @@ const Process: React.FC = () => {
                     </span>
 
                     <h2 className="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight">
-                        Do projeto à{' '}
+                        Da avaliação à{' '}
                         <span className="relative inline-block">
-                            instalação
+                            recuperação
                             <motion.span
                                 className="absolute -bottom-2 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-primary to-emerald-400"
                                 initial={{ scaleX: 0 }}
@@ -111,7 +111,7 @@ const Process: React.FC = () => {
                     </h2>
 
                     <p className="text-gray-300 text-lg leading-relaxed">
-                        Acompanhe cada etapa da criação da sua porta. Transparência e qualidade em todo o processo.
+                        Acompanhe cada etapa do seu tratamento. Transparência e cuidado em todo o processo.
                     </p>
                 </motion.div>
 
@@ -177,12 +177,12 @@ const Process: React.FC = () => {
                     transition={{ delay: 1, duration: 0.6 }}
                     className="text-center mt-16"
                 >
-                    <p className="text-gray-400 mb-4">Prazo médio total: 20-35 dias</p>
+                    <p className="text-gray-400 mb-4">Duração média da sessão: 50 minutos</p>
                     <a
                         href="/contato"
                         className="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-emerald-500 transition-all duration-300"
                     >
-                        Iniciar meu projeto
+                        Agendar avaliação
                     </a>
                 </motion.div>
             </div>

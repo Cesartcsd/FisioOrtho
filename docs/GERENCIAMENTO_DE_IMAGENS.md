@@ -1,4 +1,4 @@
-# Gerenciamento de Imagens - Soroportas
+# Gerenciamento de Imagens - FisioOrthopédicos
 
 > Ultima atualizacao: 10/02/2026
 
@@ -157,7 +157,7 @@ Exemplo:
       src: '/assets/collections/entrada-principal/branco-classico-1.jpg',
       webpSrcSet: '/assets/collections/entrada-principal/branco-classico-1-480.webp 480w, /assets/collections/entrada-principal/branco-classico-1-768.webp 768w',
       sizes: '(max-width: 768px) 100vw, 33vw',
-      alt: 'Porta Entrada Principal na cor Branco Classico'
+      alt: 'Sala de Fisioterapia Ortopédica'
     }
   ]
 }

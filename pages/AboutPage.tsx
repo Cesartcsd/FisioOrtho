@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTE_SEO } from '../seo/routeSeo';
 import SeoHead from '../components/seo/SeoHead';
@@ -14,19 +14,21 @@ const AboutPage: React.FC = () => {
             <div>
               <h1 className="font-serif text-4xl md:text-5xl text-gray-900 mb-6">Sobre nós</h1>
               <div className="text-gray-700 text-lg leading-relaxed space-y-2">
-                <p>Há mais de 14 anos transformando ambientes.</p>
-                <p>Fazemos visita técnica para tirar todas as dúvidas.</p>
-                <p>Atendimento personalizado para seu ambiente.</p>
-                <p>Trabalhamos com instaladores qualificados e credenciados.</p>
+                <p>Há mais de 10 anos transformando a saúde e a qualidade de vida.</p>
+                <p>Realizamos uma avaliação clínica minuciosa para o diagnóstico exato.</p>
+                <p>Tratamentos personalizados com base em evidências científicas.</p>
+                <p>Protocolos focados em resultados reais e duradouros.</p>
               </div>
             </div>
 
             <figure className="mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm lg:mx-0 lg:justify-self-end">
               <div className="aspect-[4/5] w-full bg-white flex items-center justify-center">
                 <img
-                  src="/assets/about/dono.jpg"
-                  alt="Foto do dono da Soroportas"
-                  className="h-full w-full object-contain"
+                  src="/assets/gallery/dra-jessica.jpeg"
+                  srcSet="/assets/gallery/dra-jessica-480.webp 480w, /assets/gallery/dra-jessica-768.webp 768w, /assets/gallery/dra-jessica-1024.webp 1024w"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Foto da Dra. Jéssica Arantes"
+                  className="h-full w-full object-cover"
                   decoding="async"
                   loading="eager"
                 />
@@ -38,21 +40,21 @@ const AboutPage: React.FC = () => {
             <article className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg md:min-h-[260px]">
               <h2 className="font-semibold text-xl tracking-tight text-gray-900 mb-4">Nossa Missão</h2>
               <p className="text-gray-600 leading-relaxed">
-                Transformar ambientes e realizar projetos residenciais com portas e soluções em acabamentos
+                Transformar a qualidade de vida e o bem-estar dos nossos pacientes com tratamentos
                 <br />
-                que unem qualidade, praticidade e confiança, oferecendo ao cliente uma experiência segura
+                que unem ciência, fisioterapia de alto padrão e cuidado humano, oferecendo uma experiência segura
                 <br />
-                do início da escolha até a entrega final da obra.
+                do início ao fim da reabilitação.
               </p>
             </article>
             <article className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg md:min-h-[260px]">
               <h2 className="font-semibold text-xl tracking-tight text-gray-900 mb-4">Nossa Visão</h2>
               <p className="text-gray-600 leading-relaxed">
-                Ser a empresa mais lembrada e confiável da região quando o assunto for portas prontas e
+                Ser a clínica mais lembrada e confiável da região quando o assunto for saúde, reabilitação e
                 <br />
-                soluções para interiores residenciais, reconhecida pela excelência no atendimento, agilidade
+                fisioterapia especializada, reconhecida pela excelência no atendimento, agilidade
                 <br />
-                nas entregas e compromisso real com cada projeto de nossos cliente
+                nos resultados e compromisso real com cada paciente.
               </p>
             </article>
             <article className="md:col-span-2 rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
@@ -63,11 +65,11 @@ const AboutPage: React.FC = () => {
                   <p>Cada venda é tratada com responsabilidade, transparência e respeito ao cliente.</p>
                 </li>
                 <li>
-                  <p className="font-semibold text-gray-900">Compromisso com o lar das pessoas</p>
+                  <p className="font-semibold text-gray-900">Compromisso com a sua saúde</p>
                   <p>
-                    Entendemos que não vendemos apenas portas, mas participamos da construção de sonhos e
+                    Entendemos que não entregamos apenas tratamentos, mas participamos da construção de sua
                     <br />
-                    histórias.
+                    qualidade de vida.
                   </p>
                 </li>
                 <li>
@@ -75,8 +77,8 @@ const AboutPage: React.FC = () => {
                   <p>Trabalhamos com produtos e parceiros que entregam segurança e durabilidade.</p>
                 </li>
                 <li>
-                  <p className="font-semibold text-gray-900">Agilidade que facilita a obra</p>
-                  <p>Sabemos que prazo é essencial e buscamos soluções práticas para o dia a dia do cliente.</p>
+                  <p className="font-semibold text-gray-900">Agilidade no alívio da dor</p>
+                  <p>Sabemos que sua saúde é essencial e buscamos soluções práticas para o seu dia a dia.</p>
                 </li>
                 <li>
                   <p className="font-semibold text-gray-900">Atendimento próximo e humano</p>
@@ -91,9 +93,9 @@ const AboutPage: React.FC = () => {
           </div>
 
           <div className="rounded-2xl bg-brand-dark text-white p-8 md:p-10">
-            <h2 className="font-serif text-3xl mb-3">Vamos falar sobre o seu projeto?</h2>
+            <h2 className="font-serif text-3xl mb-3">Vamos agendar sua avaliação?</h2>
             <p className="text-gray-200 mb-6">
-              Nossa equipe técnica responde rapidamente e orienta a melhor solução para o seu ambiente.
+              Nossa equipe orienta a melhor solução para sua recuperação ou cuidado estético.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
